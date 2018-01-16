@@ -20,9 +20,9 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 
 
-        Button btnLogin = (Button) findViewById(R.id.btnLogin);
-        EditText email = (EditText) findViewById(R.id.emailLogin);
-        EditText pwd = (EditText) findViewById(R.id.pwdLogin);
+        Button btnLogin = (Button) findViewById(R.id.btn);
+        EditText email = (EditText) findViewById(R.id.username);
+        EditText pwd = (EditText) findViewById(R.id.password);
         email.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
         pwd.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
 
