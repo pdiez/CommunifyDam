@@ -13,7 +13,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Start home activity
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, Login.class));
         mAuth = FirebaseAuth.getInstance();
         // close splash activity
         finish();
