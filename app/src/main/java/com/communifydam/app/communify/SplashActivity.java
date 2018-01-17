@@ -14,6 +14,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Start home activity
         startActivity(new Intent(SplashActivity.this, Login.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         mAuth = FirebaseAuth.getInstance();
         // close splash activity
         finish();
