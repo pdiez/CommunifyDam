@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
-    tools:background="#000000">
+    tools:background="#FF000000">
 
     <ImageView
         android:id="@+id/imageView"
@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/logo_splash" />
+        android:background="#FF000000"
+        app:srcCompat="@drawable/logo_splash2" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,8 +28,9 @@
             android:layout_height="287dp" />
 
         <LinearLayout
+            android:id="@+id/contenedor"
             android:layout_width="match_parent"
-            android:layout_height="267dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="#CCFFFFFF"
             android:orientation="vertical"
@@ -38,9 +40,9 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#FFFFFF"
                 tools:layout_editor_absoluteX="20dp"
-                tools:layout_editor_absoluteY="280dp"
-                android:background="#FFFFFF">
+                tools:layout_editor_absoluteY="280dp">
 
                 <EditText
                     android:id="@+id/username"
@@ -60,9 +62,9 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="79dp"
+                android:background="#FFFFFF"
                 tools:layout_editor_absoluteX="20dp"
-                tools:layout_editor_absoluteY="280dp"
-                android:background="#FFFFFF">
+                tools:layout_editor_absoluteY="280dp">
 
                 <EditText
                     android:id="@+id/password"
@@ -80,7 +82,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="104dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal">
 

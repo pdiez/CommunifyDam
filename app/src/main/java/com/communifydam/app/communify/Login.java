@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 /**
  * Created by 2912 on 16/01/2018.
  */
@@ -35,6 +38,10 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        YoYo.with(Techniques.Landing)
+                .duration(900)
+                .repeat(0)
+                .playOn(findViewById(R.id.contenedor));
 
     }
 }

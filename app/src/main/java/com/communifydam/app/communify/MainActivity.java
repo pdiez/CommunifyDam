@@ -3,8 +3,13 @@ package com.communifydam.app.communify;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.DragEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ListView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -50,8 +55,13 @@ public class MainActivity extends AppCompatActivity {
         // Set the adapter on the ListView
         AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.plantilla_anuncio, anuncios);
         lv.setAdapter(adapter);
-    }
 
+        YoYo.with(Techniques.Pulse)
+                .duration(900)
+                .repeat(YoYo.INFINITE)
+                .playOn(findViewById(R.id.fabAddAnuncio));
+
+    }
 
 
 }

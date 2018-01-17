@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.46">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/icono_categoria"
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:layout_weight="0.46"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
+
+            <TextView
+                android:id="@+id/tv_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:layout_weight="1.00"
+                android:text="titulo" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/tv_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_weight="1.00"
+                android:text="descripcion" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/tv_hora"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:layout_weight="1.00"
+                android:text="hora" />
+
+            <TextView
+                android:id="@+id/tv_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:layout_weight="1.00"
+                android:text="fecha" />
+
+            <TextView
+                android:id="@+id/tv_numero"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:layout_weight="1.00"
+                android:text="numero" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/btn_cerrar"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:layout_weight="1.00"
+                android:text="cerrar" />
+
+            <Button
+                android:id="@+id/btn_aceptar"
+                android:layout_width="wrap_content"
+                android:layout_height="67dp"
+                android:layout_weight="1.00"
+                android:text="aceptar" />
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
