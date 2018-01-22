@@ -1,26 +1,18 @@
 package com.communifydam.app.communify;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.DragEvent;
-import android.view.MotionEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ActionMenuView;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.yarolegovich.lovelydialog.LovelyChoiceDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,20 +80,17 @@ public class MainActivity extends AppCompatActivity {
         String[] comunidades = {"Mi barrio", "13 Rue del Percebe"};
 
 
-        new LovelyChoiceDialog(this)
-                .setTitle("Comunidades")
-                .setIcon(R.drawable.ic_home_trans)
-                .setIconTintColor(Color.YELLOW)
-                .setTopColor(Color.BLUE)
-                .setItemsMultiChoice(comunidades, new LovelyChoiceDialog.OnItemsSelectedListener<String>() {
-                    @Override
-                    public void onItemsSelected(List<Integer> positions, List<String> items) {
-                       refrescaLista();
-                    }
-                })
-                .setConfirmButtonText("Aceptar")
-                .setConfirmButtonColor(Color.YELLOW)
-                .show();
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.lista_com_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+
+
     }
 
     public void refrescaLista() {
