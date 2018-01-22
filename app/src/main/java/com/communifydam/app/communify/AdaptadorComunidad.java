@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class AdaptadorComunidad extends ArrayAdapter<Comunidad> {
     }
 
     public class ViewHolder{
-        CheckBox marcado;
+        Switch marcado;
         TextView title;
         TextView description;
     }
@@ -38,7 +39,7 @@ public class AdaptadorComunidad extends ArrayAdapter<Comunidad> {
         if (convertView == null){
             convertView = mInflater.inflate(R.layout.mini_comunidad, null);
             holder = new AdaptadorComunidad.ViewHolder();
-            holder.marcado = (CheckBox)convertView.findViewById(R.id.cb_seleccionada);
+            holder.marcado = (Switch)convertView.findViewById(R.id.swActivado);
             holder.title = (TextView)convertView.findViewById(R.id.tv_nombre);
             convertView.setTag(holder);
         } else

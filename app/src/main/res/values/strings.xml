@@ -2,4 +2,24 @@
     <string name="app_name">Communify</string>
     <string name="action_mnu1">opcion1</string>
     <string name="action_mnu2">opcion2</string>
+
+    <string name="pref_ck1">checkbox1</string>
+    <string name="pref_ck1_sum">checkbox1 resumen</string>
+    <string name="pref_ck1_op1">checkbox1 opcion1</string>
+    <string name="pref_ck1_op_title">checkbox1 titulo</string>
+    <string name="pref_ck1_op_dialog">checkbox1 dialog</string>
+    <string-array name="pref_ck1_op1_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+    </string-array>
+    <string-array  name="pref_ck1_op1_entryvalues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+    </string-array>
+    <string name="pref_ck1_op1_default">checkbox1 opcion1</string>
+
 </resources>

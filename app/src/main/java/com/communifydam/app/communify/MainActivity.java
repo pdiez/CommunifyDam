@@ -1,7 +1,6 @@
 package com.communifydam.app.communify;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import com.daimajia.androidanimations.library.YoYo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -77,8 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void pintaComunidades() {
 
-        String[] comunidades = {"Mi barrio", "13 Rue del Percebe"};
+        ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
+        Comunidad com1 = new Comunidad(true, "Mi barrio", "blabla");
+        Comunidad com2 = new Comunidad(false, "13 Rue del Percebe", "blabla");
 
+        comunidades.add(com1);
+        comunidades.add(com2);
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
@@ -86,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.lista_com_dialog, null);
         dialogBuilder.setView(dialogView);
 
+        ListView lvcom = (ListView) dialogView.findViewById(R.id.lvComunidades);
+        AdaptadorComunidad adcom = new AdaptadorComunidad(getApplicationContext(), R.layout.mini_comunidad, comunidades);
+        lvcom.setAdapter(adcom);
 
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
@@ -98,8 +103,14 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
 
         String[] titles = {"Anuncio 1","Anuncio 2","Anuncio 3","Anuncio 4","Anuncio 5","Anuncio 6","Anuncio 7","Anuncio 8"};
-        String[] descriptions = {"Publicado en Comunidad DAM","Publicado en Comunidad DAM","Publicado en Comunidad DAM","Publicado en Comunidad DAM","Publicado en Comunidad DAM",
-                "Publicado en Comunidad DAM","Publicado en Comunidad DAM","Publicado en Comunidad DAM"};
+        String[] descriptions = {"Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
+                "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
+                "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
+                "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
+                "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
+                "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
+                "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
+                "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf"};
 
         //Populate the List
         for (int i = 0; i < titles.length; i++) {
@@ -108,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Set the adapter on the ListView
-        AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.plantilla_anuncio, anuncios);
+        AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.mini_anuncio, anuncios);
         lv.setAdapter(adapter);
     }
 

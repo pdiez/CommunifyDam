@@ -25,8 +25,8 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
 
     public class ViewHolder{
         ImageView image;
-        TextView title;
-        TextView description;
+
+        TextView titulo, anunciante, descripcion, numero;
     }
 
 
@@ -36,18 +36,22 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
 
         LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null){
-            convertView = mInflater.inflate(R.layout.plantilla_anuncio, null);
+            convertView = mInflater.inflate(R.layout.mini_anuncio, null);
             holder = new ViewHolder();
-            holder.image = (ImageView)convertView.findViewById(R.id.list_image);
-            holder.title = (TextView)convertView.findViewById(R.id.title);
-            holder.description = (TextView)convertView.findViewById(R.id.description);
+            holder.image = (ImageView)convertView.findViewById(R.id.image);
+            holder.titulo = (TextView)convertView.findViewById(R.id.txtTitulo);
+            holder.anunciante = (TextView)convertView.findViewById(R.id.txtAnunciante);
+            holder.descripcion = (TextView)convertView.findViewById(R.id.txtDescripcion);
+            holder.numero = (TextView)convertView.findViewById(R.id.txtNumero);
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();
 
         holder.image.setImageResource(rowItem.getImageId());
-        holder.title.setText(rowItem.getTitle());
-        holder.description.setText(rowItem.getDesc());
+        holder.titulo.setText(rowItem.getTitle());
+        holder.descripcion.setText(rowItem.getDesc());
+        holder.anunciante.setText(rowItem.getAnunciante());
+        holder.numero.setText(rowItem.getNumero());
 
         return convertView;
     }
