@@ -16,9 +16,10 @@ import com.daimajia.androidanimations.library.YoYo;
  * Created by 2912 on 16/01/2018.
  */
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
@@ -32,14 +33,14 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
         YoYo.with(Techniques.Landing)
-                .duration(900)
+                .duration(1900)
                 .repeat(0)
                 .playOn(findViewById(R.id.contenedor));
 

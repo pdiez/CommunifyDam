@@ -39,15 +39,13 @@ public class AdaptadorComunidad extends ArrayAdapter<Comunidad> {
             convertView = mInflater.inflate(R.layout.mini_comunidad, null);
             holder = new AdaptadorComunidad.ViewHolder();
             holder.marcado = (CheckBox)convertView.findViewById(R.id.cb_seleccionada);
-            holder.title = (TextView)convertView.findViewById(R.id.title);
-            holder.description = (TextView)convertView.findViewById(R.id.description);
+            holder.title = (TextView)convertView.findViewById(R.id.tv_nombre);
             convertView.setTag(holder);
         } else
             holder = (AdaptadorComunidad.ViewHolder)convertView.getTag();
 
         holder.marcado.setChecked(rowItem.getMarcado());
         holder.title.setText(rowItem.getTitle());
-        holder.description.setText(rowItem.getDesc());
 
         return convertView;
     }
