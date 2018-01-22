@@ -11,6 +11,7 @@ public class Anuncio {
     private String description;
     private String numero;
     private String anunciante;
+    private String fecha;
 
     public Anuncio(int imageId, String title, String desc) {
         this.imageId = imageId;
@@ -18,6 +19,7 @@ public class Anuncio {
         this.description = desc;
         this.numero = "0";
         this.anunciante ="prueba de anunciante";
+        this.fecha = "hace 15 min.";
     }
     public int getImageId() {
         return imageId;
@@ -39,6 +41,7 @@ public class Anuncio {
     }
     public String getNumero() {return numero; }
     public String getAnunciante() { return anunciante; }
+    public String getFecha() { return fecha; }
     @Override
     public String toString() {
         return title + "\n" + description;

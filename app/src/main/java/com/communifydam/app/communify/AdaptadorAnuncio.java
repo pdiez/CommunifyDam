@@ -26,7 +26,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
     public class ViewHolder{
         ImageView image;
 
-        TextView titulo, anunciante, descripcion, numero;
+        TextView titulo, anunciante, descripcion, fecha;
     }
 
 
@@ -42,7 +42,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
             holder.titulo = (TextView)convertView.findViewById(R.id.txtTitulo);
             holder.anunciante = (TextView)convertView.findViewById(R.id.txtAnunciante);
             holder.descripcion = (TextView)convertView.findViewById(R.id.txtDescripcion);
-            holder.numero = (TextView)convertView.findViewById(R.id.txtNumero);
+            holder.fecha = (TextView)convertView.findViewById(R.id.txtTiempo);
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();
@@ -51,7 +51,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
         holder.titulo.setText(rowItem.getTitle());
         holder.descripcion.setText(rowItem.getDesc());
         holder.anunciante.setText(rowItem.getAnunciante());
-        holder.numero.setText(rowItem.getNumero());
+        holder.fecha.setText(rowItem.getFecha());
 
         return convertView;
     }
