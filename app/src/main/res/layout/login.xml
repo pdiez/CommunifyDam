@@ -23,10 +23,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="287dp" />
-
         <LinearLayout
             android:id="@+id/contenedor"
             android:layout_width="match_parent"
@@ -34,7 +30,8 @@
             android:layout_margin="20dp"
             android:background="#CCFFFFFF"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:layout_gravity="center_vertical">
 
 
             <android.support.design.widget.TextInputLayout
@@ -55,6 +52,7 @@
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textColor="@color/colorPrimary" />
+
 
 
             </android.support.design.widget.TextInputLayout>
@@ -91,7 +89,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/btnhover"
                     android:text="Entrar"
                     android:textAllCaps="false"
                     android:textColor="#fff"
@@ -110,10 +108,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="250dp" />
 
     </LinearLayout>
 

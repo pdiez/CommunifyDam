@@ -27,7 +27,6 @@ public class AdaptadorComunidad extends ArrayAdapter<Comunidad> {
     public class ViewHolder{
         Switch marcado;
         TextView title;
-        TextView description;
     }
 
 
