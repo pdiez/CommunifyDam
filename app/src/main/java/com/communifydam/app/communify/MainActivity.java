@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 .repeat(YoYo.INFINITE)
                 .playOn(findViewById(R.id.fabAddAnuncio));
 
-        ImageButton btnComunidades = (ImageButton) findViewById(R.id.btnComunidades);
+       /* ImageButton btnComunidades = (ImageButton) findViewById(R.id.btnComunidades);
         btnComunidades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
                 startActivity(intent);
             }
-        });
+        }); */
 
 
     }
