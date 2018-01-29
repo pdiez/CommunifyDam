@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Communify.iml" filepath="$PROJECT_DIR$/Communify.iml" />
+      <module fileurl="file://C:\Users\alex\AndroidStudioProjects\CommunifyDam1\Communify.iml" filepath="C:\Users\alex\AndroidStudioProjects\CommunifyDam1\Communify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CommunifyDam1.iml" filepath="$PROJECT_DIR$/.idea/CommunifyDam1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\alex\AndroidStudioProjects\CommunifyDam1\app\app.iml" filepath="C:\Users\alex\AndroidStudioProjects\CommunifyDam1\app\app.iml" />
     </modules>
   </component>
 </project>
