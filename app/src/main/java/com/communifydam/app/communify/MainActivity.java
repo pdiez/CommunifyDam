@@ -1,7 +1,8 @@
 package com.communifydam.app.communify;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,11 +10,28 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.holder.BadgeStyle;
+import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SectionDrawerItem;
+import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
+import com.mikepenz.materialdrawer.model.ToggleDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import java.util.ArrayList;
 
@@ -21,7 +39,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
-
 
     private static Integer[] images = {
             android.R.drawable.ic_btn_speak_now,
@@ -39,9 +56,59 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
-    //    Toolbar myToolbar = (Toolbar) findViewById(R.id.custom_toolbar);
-      //  setSupportActionBar(myToolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        //if you want to update the items at a later time it is recommended to keep it in a variable
+       // PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("papapap");
+        //SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("jejejejeje");
+
+        //header
+        AccountHeader headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.mipmap.ic_home_background)
+                .addProfiles(
+                        new ProfileDrawerItem().withName("Oscar Atos").withEmail("novoyniaunquemematen@gmail.com").withIcon(getResources().getDrawable(R.drawable.ic_launcher_foreground, getTheme()))
+                )
+                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                    @Override
+                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                        return false;
+                    }
+                })
+                .build();
+
+        //create the drawer and remember the `Drawer` result object
+        Drawer result = new DrawerBuilder()
+                .withAccountHeader(headerResult)
+                .withActivity(this)
+                .withActionBarDrawerToggle(true)
+                .withTranslucentStatusBar(true)
+                .withToolbar(myToolbar)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName("A").withIcon(R.drawable.ic_home_trans).withIdentifier(1),
+                        new PrimaryDrawerItem().withName("B").withIcon(R.drawable.ic_edit).withBadge("22").withBadgeStyle(new BadgeStyle(Color.RED, Color.RED)).withIdentifier(2).withSelectable(false),
+                        new PrimaryDrawerItem().withName("C").withIcon(R.drawable.ic_home_black_24dp).withIdentifier(3),
+                        new PrimaryDrawerItem().withName("D").withIcon(R.drawable.ic_logout).withIdentifier(4),
+                        new PrimaryDrawerItem().withDescription("A more complex sample").withName("E").withIcon(R.drawable.material_drawer_circle_mask).withIdentifier(5),
+                        new SectionDrawerItem().withName("HHH"),
+                        new SecondaryDrawerItem().withName("F").withIcon(R.drawable.material_drawer_shadow_left),
+                        new SecondaryDrawerItem().withName("G").withIcon(R.drawable.common_google_signin_btn_icon_light).withTag("Bullhorn"),
+                        new DividerDrawerItem(),
+                        new SwitchDrawerItem().withName("Switch").withIcon(R.drawable.material_drawer_badge).withChecked(true).withOnCheckedChangeListener(onCheckedChangeListener),
+                        new ToggleDrawerItem().withName("Toggle").withIcon(R.drawable.material_drawer_badge).withChecked(true).withOnCheckedChangeListener(onCheckedChangeListener))
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        if (drawerItem instanceof Nameable) {
+                            Toast.makeText(MainActivity.this, ((Nameable) drawerItem).getName().getText(MainActivity.this), Toast.LENGTH_SHORT).show();
+                        }
+                        return false;
+                    }
+                })
+                .withGenerateMiniDrawer(true)
+                .build();
 
 
 
@@ -70,8 +137,20 @@ public class MainActivity extends AppCompatActivity {
         }); */
 
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddAnuncio);
+
     }
 
+    private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
+            if (drawerItem instanceof Nameable) {
+                Log.i("material-drawer", "DrawerItem: " + ((Nameable) drawerItem).getName() + " - toggleChecked: " + isChecked);
+            } else {
+                Log.i("material-drawer", "toggleChecked: " + isChecked);
+            }
+        }
+    };
 
 
 
@@ -85,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         comunidades.add(com2);
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
 
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.lista_com_dialog, null);
