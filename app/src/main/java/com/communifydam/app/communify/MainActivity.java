@@ -2,7 +2,6 @@ package com.communifydam.app.communify;
 
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,22 +12,15 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.*;
 import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SectionDrawerItem;
-import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
-import com.mikepenz.materialdrawer.model.ToggleDrawerItem;
+import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
@@ -119,25 +111,13 @@ public class MainActivity extends AppCompatActivity {
                 .repeat(YoYo.INFINITE)
                 .playOn(findViewById(R.id.fabAddAnuncio));
 
-       /* ImageButton btnComunidades = (ImageButton) findViewById(R.id.btnComunidades);
-        btnComunidades.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddAnuncio);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pintaComunidades();
+                addAnuncio();
             }
         });
-
-        ImageButton btnPerfil = (ImageButton) findViewById(R.id.btnPerfil);
-        btnPerfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
-                startActivity(intent);
-            }
-        }); */
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddAnuncio);
 
     }
 
@@ -153,6 +133,11 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    public void addAnuncio() {
+        AnuncioDialog dg = AnuncioDialog.newInstance("Crear Anuncio");
+        dg.show(getSupportFragmentManager(), null);
+
+    }
 
     public void pintaComunidades() {
 
