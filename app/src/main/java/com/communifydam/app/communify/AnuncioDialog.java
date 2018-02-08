@@ -36,30 +36,47 @@ public class AnuncioDialog extends DialogFragment {
         final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPager);
         vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager()));
 
+
+        final Button next = (Button) v.findViewById(R.id.bNext);
+        final Button prev = (Button) v.findViewById(R.id.bPrev);
+
+
+
         vp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
                                        @Override
                                        public void onPageSelected(int pos) {
                                            paso = pos;
+                                           if (paso==0) {
+                                               prev.setEnabled(false);
+                                               next.setEnabled(true);
+                                           } else if(paso==3) {
+                                               prev.setEnabled(false);
+                                               next.setEnabled(true);
+                                           } else {
+                                               prev.setEnabled(true);
+                                               next.setEnabled(true);
+                                           }
+
                                        }
         });
 
-        Button next = (Button) v.findViewById(R.id.bNext);
-        Button prev = (Button) v.findViewById(R.id.bPrev);
 
-
-        if (paso==0) {
-            prev.setEnabled(false);
-            next.setEnabled(true);
-        } else if(paso==3) {
-            prev.setEnabled(false);
-            next.setEnabled(true);
-        }
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 paso++;
                 vp.setCurrentItem(paso);
+
+            }
+        });
+
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paso--;
+                vp.setCurrentItem(paso);
+
             }
         });
 

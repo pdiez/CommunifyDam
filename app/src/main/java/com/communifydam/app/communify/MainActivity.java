@@ -31,6 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
+    String email_usuario;
 
     private static Integer[] images = {
             android.R.drawable.ic_btn_speak_now,
@@ -45,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                email_usuario = extras.get("email").toString();
+            } else {
+                email_usuario  = "";
+            }
+        } else {
+            email_usuario = (String) savedInstanceState.getSerializable("email");
+        }
 
 
         setContentView(R.layout.activity_main);

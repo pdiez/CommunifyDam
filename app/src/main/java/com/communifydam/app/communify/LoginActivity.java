@@ -106,10 +106,11 @@ public class LoginActivity extends AppCompatActivity {
                 EditText pwd = (EditText) findViewById(R.id.password);
                 email.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
                 pwd.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
-                String val_e = email.getText().toString().trim();
+                final String val_e = email.getText().toString().trim();
                 if(!val_e.isEmpty()) {
                     if (val_e.equals("a")) {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("email", val_e);
                         startActivity(intent);
                         finish();
                     }
@@ -127,7 +128,9 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, "Falló el login", Toast.LENGTH_LONG).show();
 
                                     } else {
+
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("email", val_e);
                                         startActivity(intent);
                                         finish();
                                     }
@@ -192,7 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            //intent.putExtra();
+                            intent.putExtra("email", user.getEmail());
                             startActivity(intent);
                             finish();
 
