@@ -12,9 +12,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.mikepenz.materialdrawer.*;
@@ -146,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addAnuncio() {
-        AnuncioDialog dg = AnuncioDialog.newInstance("Crear Anuncio");
+        AnuncioDialog dg = new AnuncioDialog();
         dg.show(getSupportFragmentManager(), null);
 
     }

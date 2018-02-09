@@ -15,19 +15,7 @@ import android.widget.Button;
 
 
 public class AnuncioDialog extends DialogFragment {
-    int paso = 0;
-
-    public AnuncioDialog() {
-    }
-
-    public static AnuncioDialog newInstance(String title) {
-        AnuncioDialog frag = new AnuncioDialog();
-        Bundle args = new Bundle();
-        args.putString("title", title);
-        frag.setArguments(args);
-
-        return frag;
-    }
+    private int paso = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,11 +23,22 @@ public class AnuncioDialog extends DialogFragment {
         View v = inflater.inflate(R.layout.anuncio_add, container);
         final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPager);
         vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager()));
-
+        paso = 0;
 
         final Button next = (Button) v.findViewById(R.id.bNext);
         final Button prev = (Button) v.findViewById(R.id.bPrev);
 
+
+        if (paso==0) {
+            prev.setEnabled(false);
+            next.setEnabled(true);
+        } else if(paso==3) {
+            prev.setEnabled(false);
+            next.setEnabled(true);
+        } else {
+            prev.setEnabled(true);
+            next.setEnabled(true);
+        }
 
 
         vp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
