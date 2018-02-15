@@ -1,8 +1,11 @@
 package com.communifydam.app.communify;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -12,7 +15,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
 
         Thread timer= new Thread()
         {
@@ -21,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 try
                 {
                     //Display for 3 seconds
-                    sleep(3000);
+                    sleep(1000);
                 }
                 catch (InterruptedException e)
                 {
@@ -38,12 +40,10 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
         };
-        timer.start();
-        YoYo.with(Techniques.Wobble)
-                .duration(900)
-                .repeat(YoYo.INFINITE)
-                .playOn(findViewById(R.id.imgLogo));
 
+
+        ((AnimatedVectorDrawable) getWindow().getDecorView().getBackground()).start();
+        timer.start();
 
     }
 

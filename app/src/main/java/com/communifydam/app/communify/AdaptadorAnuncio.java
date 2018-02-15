@@ -38,11 +38,11 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
         if (convertView == null){
             convertView = mInflater.inflate(R.layout.mini_anuncio, null);
             holder = new ViewHolder();
-            holder.image = (ImageView)convertView.findViewById(R.id.image);
-            holder.titulo = (TextView)convertView.findViewById(R.id.txtTitulo);
-            holder.anunciante = (TextView)convertView.findViewById(R.id.txtAnunciante);
-            holder.descripcion = (TextView)convertView.findViewById(R.id.txtDescripcion);
-            holder.fecha = (TextView)convertView.findViewById(R.id.txtTiempo);
+            holder.image = convertView.findViewById(R.id.image);
+            holder.titulo = convertView.findViewById(R.id.txtTitulo);
+            holder.anunciante = convertView.findViewById(R.id.txtAnunciante);
+            holder.descripcion = convertView.findViewById(R.id.txtDescripcion);
+            holder.fecha = convertView.findViewById(R.id.txtTiempo);
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();

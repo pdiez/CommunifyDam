@@ -19,7 +19,7 @@ public class PerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_perfil);
 
-        ImageButton logout = (ImageButton) findViewById(R.id.logout);
+        ImageButton logout = findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

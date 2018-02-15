@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        SignInButton signInButton = (SignInButton)findViewById(R.id.sign_in_button);
+        SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        Button btnReg = (Button) findViewById(R.id.btnReg);
+        Button btnReg = findViewById(R.id.btnReg);
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,12 +98,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button btnLogin = (Button) findViewById(R.id.btn);
+        Button btnLogin = findViewById(R.id.btn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText email = (EditText) findViewById(R.id.username);
-                EditText pwd = (EditText) findViewById(R.id.password);
+                EditText email = findViewById(R.id.username);
+                EditText pwd = findViewById(R.id.password);
                 email.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
                 pwd.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
                 final String val_e = email.getText().toString().trim();

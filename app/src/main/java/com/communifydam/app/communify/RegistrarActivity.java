@@ -25,14 +25,14 @@ public class RegistrarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registrar);
         mAuth = FirebaseAuth.getInstance();
 
-        Button btn = (Button) findViewById(R.id.btn);
+        Button btn = findViewById(R.id.btn);
 
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText email = (EditText) findViewById(R.id.username);
-                EditText pwd = (EditText) findViewById(R.id.password);
+                EditText email = findViewById(R.id.username);
+                EditText pwd = findViewById(R.id.password);
                 email.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
                 pwd.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
                 String val_e = email.getText().toString().trim();

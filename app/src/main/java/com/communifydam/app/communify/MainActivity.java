@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 .repeat(YoYo.INFINITE)
                 .playOn(findViewById(R.id.fabAddAnuncio));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddAnuncio);
+        FloatingActionButton fab = findViewById(R.id.fabAddAnuncio);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.lista_com_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        ListView lvcom = (ListView) dialogView.findViewById(R.id.lvComunidades);
+        ListView lvcom = dialogView.findViewById(R.id.lvComunidades);
         AdaptadorComunidad adcom = new AdaptadorComunidad(getApplicationContext(), R.layout.mini_comunidad, comunidades);
         lvcom.setAdapter(adcom);
 
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refrescaLista() {
-        lv = (ListView) findViewById(R.id.lvAnuncios);
+        lv = findViewById(R.id.lvAnuncios);
         ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
 
         String[] titles = {"Anuncio 1","Anuncio 2","Anuncio 3","Anuncio 4","Anuncio 5","Anuncio 6","Anuncio 7","Anuncio 8"};

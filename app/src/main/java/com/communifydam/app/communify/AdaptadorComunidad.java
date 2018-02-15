@@ -38,8 +38,8 @@ public class AdaptadorComunidad extends ArrayAdapter<Comunidad> {
         if (convertView == null){
             convertView = mInflater.inflate(R.layout.mini_comunidad, null);
             holder = new AdaptadorComunidad.ViewHolder();
-            holder.marcado = (Switch)convertView.findViewById(R.id.swActivado);
-            holder.title = (TextView)convertView.findViewById(R.id.tv_nombre);
+            holder.marcado = convertView.findViewById(R.id.swActivado);
+            holder.title = convertView.findViewById(R.id.tv_nombre);
             convertView.setTag(holder);
         } else
             holder = (AdaptadorComunidad.ViewHolder)convertView.getTag();

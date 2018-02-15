@@ -17,7 +17,7 @@ public class FragmentAddAnuncio_1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.add_anuncio_step_1, container, false);
 
-        TextView tv = (TextView) v.findViewById(R.id.tvf1);
+        TextView tv = v.findViewById(R.id.tvf1);
         tv.setText("Pepito");
 
         return v;

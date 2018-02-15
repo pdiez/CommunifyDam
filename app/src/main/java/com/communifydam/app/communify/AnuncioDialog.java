@@ -21,12 +21,12 @@ public class AnuncioDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.anuncio_add, container);
-        final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPager);
+        final ViewPager vp = v.findViewById(R.id.dgPager);
         vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager()));
         paso = 0;
 
-        final Button next = (Button) v.findViewById(R.id.bNext);
-        final Button prev = (Button) v.findViewById(R.id.bPrev);
+        final Button next = v.findViewById(R.id.bNext);
+        final Button prev = v.findViewById(R.id.bPrev);
 
 
         if (paso==0) {
