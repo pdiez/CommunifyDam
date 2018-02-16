@@ -14,14 +14,14 @@
                 android:pathData="M 0 0 L 827 0 L 827 1170 L 0 1170 Z"
                 android:fillColor="#000"
                 android:strokeWidth="1"/>
-            <group android:name="hkbjpusevz_rk1172lwg">
+            <group android:name="barrablanca">
                 <path
                     android:name="hkbjpusevz"
                     android:pathData="M 538.6 78.7 L 710.6 78.7 L 710.6 916 L 538.6 916 Z"
                     android:fillColor="#ffffff"
                     android:strokeWidth="1"/>
             </group>
-            <group android:name="rjzjtuoevg_hkijznewg">
+            <group android:name="figurabarrablanca">
                 <group android:name="rjzjtuoevg">
                     <path
                         android:name="r1m1pujxpm"
@@ -55,14 +55,14 @@
                         android:strokeWidth="1"/>
                 </group>
             </group>
-            <group android:name="sjy1p_jgwz_rynsghgdf">
+            <group android:name="barranaranja">
                 <path
                     android:name="sjy1p_jgwz"
                     android:pathData="M 334.7 78.7 L 506.7 78.7 L 506.7 916 L 334.7 916 Z"
                     android:fillColor="#f7bd15"
                     android:strokeWidth="1"/>
             </group>
-            <group android:name="sjcy6_ixwm_b1a_x3gpg">
+            <group android:name="figurabarranaranja">
                 <group android:name="sjcy6_ixwm">
                     <path
                         android:name="hyo16digpz"
@@ -81,14 +81,14 @@
                         android:strokeWidth="1"/>
                 </group>
             </group>
-            <group android:name="ry0jpdigdz_b1g8ghlwm">
+            <group android:name="barraazul">
                 <path
                     android:name="ry0jpdigdz"
                     android:pathData="M 130.7 78.7 L 302.7 78.7 L 302.7 916 L 130.7 916 Z"
                     android:fillColor="#76bed0"
                     android:strokeWidth="1"/>
             </group>
-            <group android:name="skkey6dsldz_s1lsx2ldm">
+            <group android:name="figurabarraazul">
                 <group android:name="skkey6dsldz">
                     <path
                         android:name="sjxekposldz"
@@ -102,7 +102,7 @@
                         android:strokeWidth="1"/>
                 </group>
             </group>
-            <group android:name="r1fxkp_jxvm_ryvd42edz">
+            <group android:name="communify">
                 <group android:name="r1fxkp_jxvm">
                     <path
                         android:name="s17ly6_sgwm"
@@ -151,7 +151,7 @@
                         android:strokeWidth="1"/>
                 </group>
             </group>
-            <group android:name="rjhlk6oogvf">
+            <group android:name="tejado">
                 <path
                     android:name="hyag1p_ilpm"
                     android:pathData="M 506.7 172.9 L 419.2 117.6 L 334.7 170.8 L 302.7 190.9 L 130.7 299.1 L 130.7 275.4 L 189.7 238.3 L 189.7 143.7 L 241 143.7 L 241 206.1 L 302.7 167.3 L 334.7 147.2 L 419.3 93.9 L 506.7 149.3 L 538.6 169.5 L 710.6 278.5 L 710.6 302.1 L 538.6 193.2 Z"
@@ -160,26 +160,365 @@
             </group>
         </vector>
     </aapt:attr>
-    <target android:name="hkbjpusevz">
+    <target android:name="barraazul">
         <aapt:attr name="android:animation">
             <objectAnimator
-                android:propertyName="trimPathStart"
-                android:duration="1000"
-                android:valueFrom="-1000"
-                android:valueTo="100"
+                android:propertyName="translateY"
+                android:duration="500"
+                android:valueFrom="-950"
+                android:valueTo="0"
                 android:valueType="floatType"
                 android:interpolator="@android:anim/linear_interpolator"/>
         </aapt:attr>
     </target>
-    <target android:name="s17ly6_sgwm">
+    <target android:name="ry0jpdigdz">
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="fillAlpha"
-                android:duration="300"
+                android:duration="500"
                 android:valueFrom="0"
                 android:valueTo="1"
                 android:valueType="floatType"
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="barranaranja">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="translateY"
+                android:startOffset="500"
+                android:duration="500"
+                android:valueFrom="-950"
+                android:valueTo="0"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="sjy1p_jgwz">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="barrablanca">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="translateY"
+                android:startOffset="1000"
+                android:duration="500"
+                android:valueFrom="-950"
+                android:valueTo="0"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="hkbjpusevz">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="1000"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="1000"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="figurabarrablanca">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="translateX"
+                    android:startOffset="1500"
+                    android:duration="500"
+                    android:valueFrom="-200"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="translateX"
+                    android:duration="1500"
+                    android:valueFrom="-200"
+                    android:valueTo="-200"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="figurabarranaranja">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="translateX"
+                    android:startOffset="2000"
+                    android:duration="500"
+                    android:valueFrom="-200"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="translateX"
+                    android:duration="2000"
+                    android:valueFrom="-200"
+                    android:valueTo="-200"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="figurabarraazul">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="translateX"
+                    android:startOffset="2500"
+                    android:duration="500"
+                    android:valueFrom="-200"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="translateX"
+                    android:duration="2500"
+                    android:valueFrom="-200"
+                    android:valueTo="-200"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="hyag1p_ilpm">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3000"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3000"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="s17ly6_sgwm">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="bkvg16ujlpm">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="rjsgjtooedf">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="sy8ekaosewf">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="hkvejtuslvf">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="sk_e1a_jepf">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="bkke1pdigvg">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="hy9l1auogdm">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="bkoejpujgvf">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="3500"
+                    android:duration="500"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="3500"
+                    android:valueFrom="0"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
         </aapt:attr>
     </target>
 </animated-vector>

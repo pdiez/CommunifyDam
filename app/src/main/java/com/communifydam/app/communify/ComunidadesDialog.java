@@ -16,7 +16,7 @@ public class ComunidadesDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.lista_com_dialog,container,false);
+        View view = inflater.inflate(R.layout.plantilla_anuncio,container,false);
         getDialog().setTitle("Sample");
 
         return view;

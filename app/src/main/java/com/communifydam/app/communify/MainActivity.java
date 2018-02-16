@@ -114,10 +114,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         refrescaLista();
-
+        //animacion FAB
         YoYo.with(Techniques.Pulse)
                 .duration(900)
-                .repeat(YoYo.INFINITE)
+                .repeat(2)
                 .playOn(findViewById(R.id.fabAddAnuncio));
 
         FloatingActionButton fab = findViewById(R.id.fabAddAnuncio);
@@ -150,26 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void pintaComunidades() {
 
-        ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
-        Comunidad com1 = new Comunidad(true, "Mi barrio", "blabla");
-        Comunidad com2 = new Comunidad(false, "13 Rue del Percebe", "blabla");
 
-        comunidades.add(com1);
-        comunidades.add(com2);
-
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-
-
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.lista_com_dialog, null);
-        dialogBuilder.setView(dialogView);
-
-        ListView lvcom = dialogView.findViewById(R.id.lvComunidades);
-        AdaptadorComunidad adcom = new AdaptadorComunidad(getApplicationContext(), R.layout.mini_comunidad, comunidades);
-        lvcom.setAdapter(adcom);
-
-        AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.show();
 
 
     }

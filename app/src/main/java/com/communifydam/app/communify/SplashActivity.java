@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 try
                 {
                     //Display for 3 seconds
-                    sleep(1000);
+                    sleep(5000);
                 }
                 catch (InterruptedException e)
                 {
