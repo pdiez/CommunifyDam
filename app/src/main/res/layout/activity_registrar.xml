@@ -6,16 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
-    tools:background="#FF000000">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#FF000000"
-        app:srcCompat="@drawable/logo_splash2" />
+    android:background="@drawable/splash">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,7 +64,6 @@
                     android:drawableLeft="@android:drawable/ic_lock_lock"
                     android:drawableTint="@color/colorPrimary"
                     android:hint=" Password"
-                    android:inputType="numberPassword"
                     android:singleLine="true"
                     android:textColor="@color/colorPrimary" />
             </android.support.design.widget.TextInputLayout>

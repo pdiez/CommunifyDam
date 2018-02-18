@@ -12,6 +12,8 @@ import com.daimajia.androidanimations.library.YoYo;
 
 public class SplashActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +43,14 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
 
-
-        ((AnimatedVectorDrawable) getWindow().getDecorView().getBackground()).start();
-        timer.start();
+        CommunifyApp ca = ((CommunifyApp)getApplicationContext());
+        if (ca.getModoDebug()) {
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            finish();
+        } else {
+            ((AnimatedVectorDrawable) getWindow().getDecorView().getBackground()).start();
+            timer.start();
+        }
 
     }
 

@@ -1,40 +1,42 @@
 package com.communifydam.app.communify;
 
+import java.util.ArrayList;
+
 /**
  * Created by 2912 on 17/01/2018.
  */
 
 public class Comunidad {
-    private boolean marcado;
-    private String title;
-    private String description;
 
-    public Comunidad(boolean marcado, String title, String desc) {
-        this.marcado = marcado;
-        this.title = title;
-        this.description = desc;
-    }
-    public boolean getMarcado() {
-        return marcado;
-    }
-    public void setMarcado(boolean marca) {
-        this.marcado = marca;
-    }
-    public String getDesc() {
-        return description;
-    }
-    public void setDesc(String desc) {
-        this.description = desc;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    @Override
-    public String toString() {
-        return title + "\n" + description;
+    private String nombre;
+    private String ownerId;
+    private String pin;
+
+    public String getNombre() {
+        return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public Comunidad() {
+
+    }
 }

@@ -35,6 +35,11 @@
                 android:text="Communify"
                 android:textSize="16sp" />
         </FrameLayout>
+        <LinearLayout
+            android:id="@+id/maincontenedor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
 
         <ListView
             android:id="@+id/lvAnuncios"

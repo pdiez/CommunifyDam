@@ -1,25 +1,13 @@
 <resources>
     <string name="app_name">Communify</string>
-    <string name="action_mnu1">opcion1</string>
-    <string name="action_mnu2">opcion2</string>
-
-    <string name="pref_ck1">checkbox1</string>
-    <string name="pref_ck1_sum">checkbox1 resumen</string>
-    <string name="pref_ck1_op1">checkbox1 opcion1</string>
-    <string name="pref_ck1_op_title">checkbox1 titulo</string>
-    <string name="pref_ck1_op_dialog">checkbox1 dialog</string>
-    <string-array name="pref_ck1_op1_entries">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>3</item>
-    </string-array>
-    <string-array name="pref_ck1_op1_entryvalues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>3</item>
-    </string-array>
-    <string name="pref_ck1_op1_default">checkbox1 opcion1</string>
+    <string name="anonimo">Anonimo</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="comunidades">Communities</string>
+    <string name="loginToastLoginfail">Login failed!</string>
+    <string name="mainDialogPedirPerfilTitulo">Please, give us your name:</string>
+    <string name="mainDialogPedirPerfilToast">Your name is set to: </string>
+    <string name="mainNoComsTexto1">Seems like you are not a member of a community yet.</string>
+    <string name="mainNoComsTexto2">Please click on the button below to join one or create your own.</string>
 
 </resources>

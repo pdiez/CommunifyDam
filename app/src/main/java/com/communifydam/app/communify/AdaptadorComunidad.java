@@ -44,8 +44,6 @@ public class AdaptadorComunidad extends ArrayAdapter<Comunidad> {
         } else
             holder = (AdaptadorComunidad.ViewHolder)convertView.getTag();
 
-        holder.marcado.setChecked(rowItem.getMarcado());
-        holder.title.setText(rowItem.getTitle());
 
         return convertView;
     }

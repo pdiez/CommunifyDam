@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Communify</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+    <string name="anonimo">Anonimo</string>
+    <string name="comunidades">Communities</string>
+    <string name="loginToastLoginfail">Falló el login!</string>
+    <string name="mainDialogPedirPerfilTitulo">Por favor, indicanos tu nombre:</string>
+    <string name="mainDialogPedirPerfilToast">Tu nombre ahora es: </string>
+    <string name="mainNoComsTexto1">Parece que aún no eres miembro de ninguna comunidad.</string>
+    <string name="mainNoComsTexto2">Pulsa el botón inferior para unirte a una o crear una propia.</string>
+</resources>

@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -46,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -125,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // signed in user can be handled in the listener.
 
                                     if (!task.isSuccessful()) {
-                                        Toast.makeText(LoginActivity.this, "Falló el login", Toast.LENGTH_LONG).show();
+                                       tostar(getString(R.string.loginToastLoginfail));
 
                                     } else {
 
@@ -144,6 +149,15 @@ public class LoginActivity extends AppCompatActivity {
                 .duration(1900)
                 .repeat(0)
                 .playOn(findViewById(R.id.contenedor));
+
+
+        CommunifyApp ca = ((CommunifyApp)getApplicationContext());
+        if (ca.getModoDebug()) {
+            EditText email = findViewById(R.id.username);
+            EditText pwd = findViewById(R.id.password);
+            email.setText(ca.getUser());
+            pwd.setText(ca.getPwd());
+        }
 
     }
     private void signIn() {
@@ -202,14 +216,28 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            tostar(getString(R.string.loginToastLoginfail));
 
                         }
 
                         // ...
                     }
                 });
+    }
+
+    private  void tostar(String texto) {
+        Toast t = new Toast(getApplicationContext());
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,
+                (ViewGroup) findViewById(R.id.lytLayout));
+
+        TextView txtMsg = (TextView)layout.findViewById(R.id.txtMensaje);
+        txtMsg.setText(texto);
+
+        t.setDuration(Toast.LENGTH_SHORT);
+        t.setView(layout);
+        t.show();
     }
 
 }
