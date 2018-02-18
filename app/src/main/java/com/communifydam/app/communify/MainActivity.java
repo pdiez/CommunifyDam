@@ -1,21 +1,22 @@
 package com.communifydam.app.communify;
 
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.*;
-import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
@@ -37,7 +37,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addAnuncio();
+                addAnuncioTest();
             }
         });
 
@@ -197,6 +196,17 @@ public class MainActivity extends AppCompatActivity {
         dbusuario.setValue(u);
 
         //usuario = u;
+    }
+
+    private void writeNewAnuncio(Anuncio a) {
+        DatabaseReference dbanuncio = database.getReference("anuncios");
+        String keycom = dbanuncio.push().getKey();
+        dbanuncio.child(keycom).setValue(a);
+
+        tostar("anuncio añadido");
+
+        refrescaLista();
+
     }
 
     private void updateUserData() {
@@ -302,7 +312,11 @@ public class MainActivity extends AppCompatActivity {
 
             //Populate the List
             for (int i = 0; i < titles.length; i++) {
-                Anuncio item = new Anuncio(images[i], titles[i], descriptions[i]);
+                Anuncio item = new Anuncio();
+
+                item.setImagen(images[i].toString());
+                item.setTitulo(titles[i]);
+                item.setDescripcion(descriptions[i]);
                 anuncios.add(item);
             }
 
@@ -311,8 +325,6 @@ public class MainActivity extends AppCompatActivity {
             lv.setAdapter(adapter);
         }
     }
-
-
 
     private  void tostar(String texto) {
         Toast t = new Toast(getApplicationContext());
@@ -324,9 +336,56 @@ public class MainActivity extends AppCompatActivity {
         TextView txtMsg = (TextView)layout.findViewById(R.id.txtMensaje);
         txtMsg.setText(texto);
 
-        t.setDuration(Toast.LENGTH_SHORT);
+        t.setDuration(Toast.LENGTH_LONG);
         t.setView(layout);
         t.show();
+    }
+
+    private void addAnuncioTest() {
+        Context context = getApplicationContext();
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final EditText input1 = new EditText(this);
+        input1.setHint(R.string.mainAddAnuncio1);
+        layout.addView(input1);
+
+        final EditText input2 = new EditText(this);
+        input1.setHint(R.string.mainAddAnuncio2);
+        layout.addView(input2);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.mainAddAnuncio);
+
+        builder.setView(layout);
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Anuncio a = new Anuncio();
+                a.setImagen(images[0].toString());
+                a.setTitulo(input1.getText().toString());
+                a.setDescripcion(input2.getText().toString());
+                a.setCommunityId(usuario.getComunidades().get(0));
+                a.setUserId(mAuth.getCurrentUser().getUid());
+                a.setFecha("01/02/2015");
+
+                writeNewAnuncio(a);
+
+
+
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
     }
 
     private void addComunidadTest() {
