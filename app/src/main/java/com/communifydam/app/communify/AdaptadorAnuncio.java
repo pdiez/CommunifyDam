@@ -1,6 +1,8 @@
 package com.communifydam.app.communify;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,11 +48,11 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();
-
-        holder.image.setImageResource(rowItem.getImageId());
-        holder.titulo.setText(rowItem.getTitle());
-        holder.descripcion.setText(rowItem.getDescription());
-        holder.anunciante.setText(rowItem.getAnunciante());
+        Drawable img = Drawable.createFromPath(rowItem.getImagen());
+        holder.image.setImageDrawable(img);
+        holder.titulo.setText(rowItem.getTitulo());
+        holder.descripcion.setText(rowItem.getDescripcion());
+        holder.anunciante.setText(rowItem.getUserId());
         holder.fecha.setText(rowItem.getFecha());
 
         return convertView;

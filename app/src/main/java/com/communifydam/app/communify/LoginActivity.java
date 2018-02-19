@@ -235,7 +235,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView txtMsg = (TextView)layout.findViewById(R.id.txtMensaje);
         txtMsg.setText(texto);
 
-        t.setDuration(Toast.LENGTH_SHORT);
+        t.setDuration(Toast.LENGTH_LONG);
         t.setView(layout);
         t.show();
     }

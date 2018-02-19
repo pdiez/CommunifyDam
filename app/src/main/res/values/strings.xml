@@ -9,5 +9,8 @@
     <string name="mainDialogPedirPerfilToast">Your name is set to: </string>
     <string name="mainNoComsTexto1">Seems like you are not a member of a community yet.</string>
     <string name="mainNoComsTexto2">Please click on the button below to join one or create your own.</string>
+    <string name="mainAddAnuncio">Create a post</string>
+    <string name="mainAddAnuncio1">Post title</string>
+    <string name="mainAddAnuncio2">Post body</string>
 
 </resources>
