@@ -2,11 +2,16 @@ package com.communifydam.app.communify;
 
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 
 /**
@@ -21,19 +26,21 @@ public class AnuncioDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.anuncio_add, container);
-        final ViewPager vp = v.findViewById(R.id.dgPager);
+        final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPager);
         vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager()));
+
+
         paso = 0;
 
-        final Button next = v.findViewById(R.id.bNext);
-        final Button prev = v.findViewById(R.id.bPrev);
+        final Button next = (Button) v.findViewById(R.id.bNext);
+        final Button prev = (Button) v.findViewById(R.id.bPrev);
 
 
         if (paso==0) {
             prev.setEnabled(false);
             next.setEnabled(true);
         } else if(paso==3) {
-            prev.setEnabled(false);
+            prev.setEnabled(true);
             next.setEnabled(true);
         } else {
             prev.setEnabled(true);
@@ -49,7 +56,7 @@ public class AnuncioDialog extends DialogFragment {
                                                prev.setEnabled(false);
                                                next.setEnabled(true);
                                            } else if(paso==3) {
-                                               prev.setEnabled(false);
+                                               prev.setEnabled(true);
                                                next.setEnabled(true);
                                            } else {
                                                prev.setEnabled(true);
@@ -66,6 +73,7 @@ public class AnuncioDialog extends DialogFragment {
             public void onClick(View view) {
                 paso++;
                 vp.setCurrentItem(paso);
+
 
             }
         });

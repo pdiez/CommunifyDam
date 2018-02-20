@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_selec_fecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="@string/textview_calendar"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <DatePicker
+        android:id="@+id/selector_fecha"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:headerBackground="@drawable/btnhover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="18dp" />
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.communifydam.app.communify;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -48,6 +49,7 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             finish();
         } else {
+            getWindow().getDecorView().setBackground(getResources().getDrawable(R.drawable.splash));
             ((AnimatedVectorDrawable) getWindow().getDecorView().getBackground()).start();
             timer.start();
         }

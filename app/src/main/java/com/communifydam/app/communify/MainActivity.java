@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addAnuncioTest();
+                addAnuncio();
             }
         });
 
@@ -394,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
         c.setOwnerId(mAuth.getCurrentUser().getUid());
         c.setPin("123456");
 
-        DatabaseReference dbcomunidades = database.getReference("comunidades");
+              DatabaseReference dbcomunidades = database.getReference("comunidades");
         String keycom = dbcomunidades.push().getKey();
         dbcomunidades.child(keycom).setValue(c);
 

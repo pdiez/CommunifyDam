@@ -9,8 +9,8 @@ import android.app.Application;
 public class CommunifyApp extends Application {
 
     private boolean modoDebug = false;
-    private String user = "";
-    private String pwd = "";
+    private String user = "communifydam@gmail.com";
+    private String pwd = "123456";
 
 
     public String getUser() {
