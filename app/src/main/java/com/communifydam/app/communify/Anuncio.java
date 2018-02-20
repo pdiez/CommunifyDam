@@ -12,6 +12,9 @@ public class Anuncio {
    private String userId;
    private String communityId;
    private String imagen;
+   private int tipo; // 0 - Ofrezco 1 - Necesito
+
+
 
     public String getTitulo() {
         return titulo;
@@ -59,6 +62,14 @@ public class Anuncio {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     public Anuncio() {

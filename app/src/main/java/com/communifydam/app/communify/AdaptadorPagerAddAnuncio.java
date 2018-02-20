@@ -24,6 +24,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Calendar;
 
 
@@ -35,6 +39,12 @@ import java.util.Calendar;
 public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements GrabarAnuncio {
 
     private Anuncio anuncio;
+
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
 
     private EditText edit_titulo;
     private EditText edit_descripcion;
@@ -171,17 +181,30 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
     @Override
     public void grabar(String valor_list_view) {
 
-        boolean ofrec = ofrecer.isChecked();
-        boolean busc = buscar.isChecked();
+        Anuncio anuncio = new Anuncio();
 
-        String edit_tit = edit_titulo.getText().toString();
-        String edit_descr = edit_descripcion.getText().toString();
+        if(ofrecer.isChecked()) {
+            anuncio.setTipo(0);
+        } else {
+            anuncio.setTipo(1);
+        }
+        anuncio.setTitulo(edit_titulo.getText().toString());
+        anuncio.setDescripcion(edit_descripcion.getText().toString());
 
         day=dp.getDayOfMonth();
         month=dp.getMonth();
         year=dp.getYear();
         cal = Calendar.getInstance();
-        date = day + " " + month + " " +year;
+        anuncio.setFecha(day + "/" + month + "/" +year);
+        anuncio.setImagen("@drawable/ic_home_black_24dp");
+        anuncio.setCommunityId("-L5oBRy5-xGvGYKlcFDL");
+        anuncio.setUserId(mAuth.getCurrentUser().getUid());
+
+        DatabaseReference dbanuncio = mData.child("anuncios");
+        String mkey = dbanuncio.push().getKey();
+        dbanuncio.child(mkey).setValue(anuncio);
+
+
 
 
         hour = tp.getHour();

@@ -1,5 +1,7 @@
 package com.communifydam.app.communify;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,7 +41,7 @@ public class AnuncioDialog extends DialogFragment {
         if (paso==0) {
             prev.setEnabled(false);
             next.setEnabled(true);
-        } else if(paso==3) {
+        } else if(paso==4) {
             prev.setEnabled(true);
             next.setEnabled(true);
         } else {
@@ -55,9 +57,10 @@ public class AnuncioDialog extends DialogFragment {
                                            if (paso==0) {
                                                prev.setEnabled(false);
                                                next.setEnabled(true);
-                                           } else if(paso==3) {
+                                           } else if(paso==4) {
                                                prev.setEnabled(true);
                                                next.setEnabled(true);
+                                               next.setText("Finalizar");
                                            } else {
                                                prev.setEnabled(true);
                                                next.setEnabled(true);
@@ -71,6 +74,10 @@ public class AnuncioDialog extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(paso==4) {
+                    dismiss();
+                }
+
                 paso++;
                 vp.setCurrentItem(paso);
 
@@ -89,16 +96,12 @@ public class AnuncioDialog extends DialogFragment {
 
         return v;
 
-
     }
 
-    /*
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        String title = getArguments().getString("title");
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setTitle(title);
-
-        return alertDialogBuilder.create();
-    } */
+    public void onDismiss(DialogInterface dialog)
+    {
+        Activity activity = getActivity();
+        if(activity instanceof DialogCloseListener)
+            ((DialogCloseListener)activity).handleDialogClose(dialog);
+    }
 }

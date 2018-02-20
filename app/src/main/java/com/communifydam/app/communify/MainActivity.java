@@ -39,7 +39,7 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogCloseListener {
 
     ListView lv;
     String email_usuario;
@@ -433,4 +433,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void handleDialogClose(DialogInterface dialog) {
+        refrescaLista();
+
+    }
 }

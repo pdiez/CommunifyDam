@@ -64,6 +64,7 @@ public class ComunidadDialog extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 paso++;
                 vp.setCurrentItem(paso);
 
@@ -80,7 +81,6 @@ public class ComunidadDialog extends DialogFragment {
         });
 
         return v;
-
 
     }
 
