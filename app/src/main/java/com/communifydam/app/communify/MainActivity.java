@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if(position==1) {
-                            addComunidadTest();
+                            addComunidad();
                         }
                         return false;
                     }
@@ -423,6 +423,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void addAnuncio() {
         AnuncioDialog dg = new AnuncioDialog();
+        dg.show(getSupportFragmentManager(), null);
+
+    }
+
+    public void addComunidad() {
+        ComunidadDialog dg = new ComunidadDialog();
         dg.show(getSupportFragmentManager(), null);
 
     }

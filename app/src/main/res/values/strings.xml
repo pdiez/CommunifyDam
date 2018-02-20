@@ -26,4 +26,9 @@
     <string name="bt_crearAnuncio">CREAR ANUNCIO</string>
     <string name="titulo_anuncio">Título</string>
     <string name="text_descripcion">Descripción</string>
+    <string name="AddComunidad_nombre_comunidad">Nombre Comunidad</string>
+    <string name="AddComunidad_tv_nombre">¿ Qué nombre te gustaría poner a tu comunidad?</string>
+    <string name="AddComunidad_tv_descripcion">¿Te gustaría poner una breve descripción sobre tu Comunidad?</string>
+    <string name="AddComunidad_descripcion_comunidad">Descripción Comunidad</string>
+    <string name="AddComunidad_crear_comunidad">Crear Comunidad</string>
 </resources>
