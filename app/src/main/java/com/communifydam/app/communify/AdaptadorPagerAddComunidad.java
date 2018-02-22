@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * Created by 2912 on 06/02/2018.
  */
@@ -17,6 +21,8 @@ public class AdaptadorPagerAddComunidad extends FragmentPagerAdapter implements 
     private EditText et_nombre_comunidad;
     private EditText et_descripcion_comunidad;
     private Button btn_crear_comunidad;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
 
     public void setEt_nombre_comunidad(EditText et_nombre_comunidad) {
         this.et_nombre_comunidad = et_nombre_comunidad;
@@ -60,8 +66,14 @@ public class AdaptadorPagerAddComunidad extends FragmentPagerAdapter implements 
 
     @Override
     public void grabar(String grabar) {
-        String edit_nombre_comunidad = et_nombre_comunidad.getText().toString();
-        String edit_descripcion_comunidad = et_descripcion_comunidad.getText().toString();
+        Comunidad comunidad = new Comunidad();
+        comunidad.setNombre(et_nombre_comunidad.getText().toString());
+        comunidad.setOwnerId(mAuth.getCurrentUser().getUid());
+        comunidad.setPin(et_descripcion_comunidad.getText().toString());
+        DatabaseReference dbanuncio = mData.child("comunidades");
+        String mkey = dbanuncio.push().getKey();
+        dbanuncio.child(mkey).setValue(comunidad);
+
     }
 
 

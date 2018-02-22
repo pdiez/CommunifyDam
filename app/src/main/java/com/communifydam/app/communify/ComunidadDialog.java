@@ -46,12 +46,11 @@ public class ComunidadDialog extends DialogFragment {
                                        public void onPageSelected(int pos) {
                                            paso = pos;
                                            if (paso==0) {
-                                               prev.setEnabled(false);
+                                               prev.setText("Cancelar");
+                                               prev.setEnabled(true);
                                                next.setEnabled(true);
-                                           } else if(paso==3) {
-                                               prev.setEnabled(false);
-                                               next.setEnabled(true);
-                                           } else {
+                                           } else  {
+                                               next.setText("Finalizar");
                                                prev.setEnabled(true);
                                                next.setEnabled(true);
                                            }
@@ -64,9 +63,14 @@ public class ComunidadDialog extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(paso==1) {
+                    dismiss();
+                }
                 paso++;
                 vp.setCurrentItem(paso);
+
+
+
 
             }
         });
@@ -74,6 +78,9 @@ public class ComunidadDialog extends DialogFragment {
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(paso==0){
+                    dismiss();
+                }
                 paso--;
                 vp.setCurrentItem(paso);
 

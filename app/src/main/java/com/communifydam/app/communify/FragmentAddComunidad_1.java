@@ -25,6 +25,7 @@ public class FragmentAddComunidad_1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.add_comunidad_step_1, container, false);
         vp = (ViewPager) this.getParentFragment().getView().findViewById(R.id.dgPagerComunidad);
+        et_nombre_comunidad = (EditText)v.findViewById(R.id.et_nombre_comunidad);
         AdaptadorPagerAddComunidad mi_vp = (AdaptadorPagerAddComunidad) vp.getAdapter();
         mi_vp.setEt_nombre_comunidad(et_nombre_comunidad);
 
