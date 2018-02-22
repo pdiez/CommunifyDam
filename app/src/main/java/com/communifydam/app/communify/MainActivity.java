@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
     ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
     FloatingActionButton fab;
+    Toolbar myToolbar;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -71,16 +72,64 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         //cargamos la UI
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = findViewById(R.id.toolbar);
+        myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+
+        //animacion FAB
+        YoYo.with(Techniques.Wave)
+                .duration(400)
+                .repeat(1)
+                .playOn(findViewById(R.id.fabAddAnuncio));
+
+        fab = findViewById(R.id.fabAddAnuncio);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addAnuncio();
+            }
+        });
+
+        //el usuario tiene el perfil completo?
+        datosUsuario();
+    }
+
+    private void datosUsuario() {
+        //Comprobamos si el usuario esta en FB y tiene el nodo creado, o lo tenemos que crear.
+        Query q = database.getReference("usuarios").child(mAuth.getCurrentUser().getUid());
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    usuario = dataSnapshot.getValue(Usuario.class);
+                    //cargamos sus comunidades;
+                    pintaBurger();
+                    refrescaComunidades();
+
+                } else {
+                    writeNewUser();
+                }
+                if (usuario.getNombre().isEmpty()) {
+                    rellenaPerfil();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void pintaBurger() {
 
         //Cabecera Hamburger
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.mipmap.ic_home_background)
+                .withHeaderBackground(R.color.black)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Oscar Atos").withEmail("novoyniaunquemematen@gmail.com").withIcon(getResources().getDrawable(R.drawable.ic_launcher_foreground, getTheme()))
+                        new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario()).withIcon(usuario.getImagen())
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -129,7 +178,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 .withTranslucentStatusBar(true)
                 .withToolbar(myToolbar)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Crear Comunidad de prueba").withIcon(R.drawable.ic_home_trans).withIdentifier(1))
+                        new PrimaryDrawerItem().withName("Crear Comunidad de prueba").withIcon(R.drawable.ic_home_trans).withIdentifier(1),
+                        new PrimaryDrawerItem().withName("Unirse a comunidad").withIcon(R.drawable.ic_home_trans).withIdentifier(2))
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -141,49 +191,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 })
                 .build();
 
-        //animacion FAB
-        YoYo.with(Techniques.Wave)
-                .duration(400)
-                .repeat(1)
-                .playOn(findViewById(R.id.fabAddAnuncio));
-
-        fab = findViewById(R.id.fabAddAnuncio);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addAnuncio();
-            }
-        });
-
-        //el usuario tiene el perfil completo?
-        datosUsuario();
-    }
-
-    private void datosUsuario() {
-        //Comprobamos si el usuario esta en FB y tiene el nodo creado, o lo tenemos que crear.
-        Query q = database.getReference("usuarios").child(mAuth.getCurrentUser().getUid());
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    usuario = dataSnapshot.getValue(Usuario.class);
-                    //cargamos sus comunidades;
-                    refrescaComunidades();
-
-                } else {
-                    writeNewUser();
-                }
-                if (usuario.getNombre().isEmpty()) {
-                    rellenaPerfil();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 
