@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -141,9 +142,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 .build();
 
         //animacion FAB
-        YoYo.with(Techniques.RubberBand)
-                .duration(900)
-                .repeat(2)
+        YoYo.with(Techniques.Wave)
+                .duration(400)
+                .repeat(1)
                 .playOn(findViewById(R.id.fabAddAnuncio));
 
         fab = findViewById(R.id.fabAddAnuncio);
@@ -259,8 +260,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                                 if (dataSnapshot.exists()) {
                                     comunidades.add(dataSnapshot.getValue(Comunidad.class));
                                     refrescaAnuncios();
-
                                 }
+
                             }
 
                             @Override
@@ -269,9 +270,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                         });
                     }
                 } else {
-                    refrescaLista();
-                }
+               //     refrescaLista();
 
+                }
 
             }
 
@@ -291,9 +292,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot!=null) {
                     for (DataSnapshot d : dataSnapshot.getChildren()) {
-                        if (usuario.getComunidades().contains(d.getKey())) {
+                        if  (usuario.getComunidades().contains(d.child("communityId").getValue())) {
+
                             Anuncio a = d.getValue(Anuncio.class);
-                            anuncios.clear();
+                            anuncios.add(a);
 
                         }
                     }
@@ -330,6 +332,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
             AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.mini_anuncio, anuncios);
             lv.setAdapter(adapter);
+
         }
     }
 
