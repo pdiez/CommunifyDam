@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     String email_usuario;
     Usuario usuario;
     ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
+    ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
     FloatingActionButton fab;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -257,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
                                     comunidades.add(dataSnapshot.getValue(Comunidad.class));
-                                    refrescaLista();
+                                    refrescaAnuncios();
 
                                 }
                             }
@@ -281,7 +282,35 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         });
     }
 
-    public void refrescaLista() {
+    private void refrescaAnuncios() {
+
+        DatabaseReference dbanuncios = database.getReference("anuncios");
+        anuncios.clear();
+        dbanuncios.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot!=null) {
+                    for (DataSnapshot d : dataSnapshot.getChildren()) {
+                        if (usuario.getComunidades().contains(d.getKey())) {
+                            Anuncio a = d.getValue(Anuncio.class);
+                            anuncios.clear();
+
+                        }
+                    }
+                }
+                refrescaLista();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                refrescaLista();
+            }
+        });
+
+
+    }
+
+    private void refrescaLista() {
 
         if (comunidades.isEmpty()) {
             ViewGroup vg = findViewById(R.id.maincontenedor);
@@ -298,29 +327,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
 
             lv = findViewById(R.id.lvAnuncios);
-            ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
 
-            String[] titles = {"Anuncio 1", "Anuncio 2", "Anuncio 3", "Anuncio 4", "Anuncio 5", "Anuncio 6", "Anuncio 7", "Anuncio 8"};
-            String[] descriptions = {"Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
-                    "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
-                    "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
-                    "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
-                    "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
-                    "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
-                    "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf",
-                    "Blabla bala blabllbaldfa dijfafdaefsadfadsfakfd adf asjfd adfj akfd jkasdkf akd fkjadkfadf ad  fjdsf"};
-
-            //Populate the List
-            for (int i = 0; i < titles.length; i++) {
-                Anuncio item = new Anuncio();
-
-                item.setImagen(images[i].toString());
-                item.setTitulo(titles[i]);
-                item.setDescripcion(descriptions[i]);
-                anuncios.add(item);
-            }
-
-            // Set the adapter on the ListView
             AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.mini_anuncio, anuncios);
             lv.setAdapter(adapter);
         }
