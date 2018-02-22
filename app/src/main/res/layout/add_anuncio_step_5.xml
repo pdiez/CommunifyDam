@@ -14,7 +14,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="20dp"
         android:fontFamily="casual"
-        android:text="@string/text_view_elige_Com"
+        android:text="@string/wizar_anuncio_step5_TextView_elige_Com"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -39,7 +39,7 @@
         android:background="@color/colorAccent"
         android:elevation="11dp"
         android:fontFamily="casual"
-        android:text="@string/bt_crearAnuncio"
+        android:text="@string/wizar_anuncio_step5_bt_crearAnuncio"
         android:textAlignment="center"
         android:textColor="@color/cardview_light_background"
         android:textSize="24sp"

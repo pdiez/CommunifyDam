@@ -76,14 +76,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="67dp"
                 android:layout_weight="1.00"
-                android:text="cerrar" />
+                android:text="@string/anuncio_btn_cerrar" />
 
             <Button
                 android:id="@+id/btn_aceptar"
                 android:layout_width="wrap_content"
                 android:layout_height="67dp"
                 android:layout_weight="1.00"
-                android:text="aceptar" />
+                android:text="@string/anuncio_btn_aceptar" />
         </TableRow>
 
     </TableLayout>

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="@string/textview_calendar"
+        android:text="@string/wizar_anuncio_step3_TextView_calendar"
         android:textAlignment="center"
         android:textColor="@color/accent"
         android:textSize="24sp"
