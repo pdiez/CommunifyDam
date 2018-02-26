@@ -3,6 +3,7 @@ package com.communifydam.app.communify;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
@@ -49,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
     FloatingActionButton fab;
     Toolbar myToolbar;
+    Intercambio i_i;
+
+    Anuncio anuncio_seleccionado;
+    public Anuncio getAnuncio_seleccionado() {
+        return anuncio_seleccionado;
+    }
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -127,9 +134,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         //Cabecera Hamburger
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.color.black)
+                .withHeaderBackground(R.mipmap.ic_home_background)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario()).withIcon(usuario.getImagen())
+                        new ProfileDrawerItem().withName("Oscar Atos").withEmail("novoyniaunquemematen@gmail.com").withIcon(getResources().getDrawable(R.drawable.ic_launcher_foreground, getTheme()))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -191,7 +198,64 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 })
                 .build();
 
+        //animacion FAB
+        YoYo.with(Techniques.RubberBand)
+                .duration(900)
+                .repeat(2)
+                .playOn(findViewById(R.id.fabAddAnuncio));
+
+        fab = findViewById(R.id.fabAddAnuncio);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addAnuncio();
+            }
+        });
+
+        //el usuario tiene el perfil completo?
+        datosUsuario();
+        //el listener para escuchar si un item de la lista es pulsado
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+
+                //Anuncio anuncio = (Anuncio) lv.getAdapter().getItem(position);
+                Anuncio anuncio = (Anuncio) lv.getSelectedItem();
+                anuncio_seleccionado = anuncio;
+                i_i.guardarObjetoAnuncio(anuncio);
+            }
+        });
+
     }
+
+    /*private void datosUsuario() {
+        //Comprobamos si el usuario esta en FB y tiene el nodo creado, o lo tenemos que crear.
+        Query q = database.getReference("usuarios").child(mAuth.getCurrentUser().getUid());
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    usuario = dataSnapshot.getValue(Usuario.class);
+                    //cargamos sus comunidades;
+                    refrescaComunidades();
+
+                } else {
+                    writeNewUser();
+                }
+                if (usuario.getNombre().isEmpty()) {
+                    rellenaPerfil();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }*/
 
 
     //escribe en FB el nodo del usuario autentificado
