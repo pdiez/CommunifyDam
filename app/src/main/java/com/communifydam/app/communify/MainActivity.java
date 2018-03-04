@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         //Cabecera Hamburger
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
+                .withSelectionListEnabledForSingleProfile(false)
                 .withHeaderBackground(R.color.black)
                 .addProfiles(
                         new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario()).withIcon(usuario.getImagen())
