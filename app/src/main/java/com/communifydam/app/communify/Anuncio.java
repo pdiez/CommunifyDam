@@ -1,5 +1,9 @@
 package com.communifydam.app.communify;
 
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
 /**
  * Created by 2912 on 16/01/2018.
  */
@@ -12,8 +16,9 @@ public class Anuncio {
    private String userId;
    private String communityId;
    private String imagen;
+   private String id_firebase;
+   private ArrayList<String> lista_participantes;
    private int tipo; // 0 - Ofrezco 1 - Necesito
-
 
 
     public String getTitulo() {
@@ -72,7 +77,24 @@ public class Anuncio {
         this.tipo = tipo;
     }
 
+    public ArrayList<String> getLista_participantes() {
+        return lista_participantes;
+    }
+
+    public void setLista_participantes(ArrayList<String> lista_participantes) {
+        this.lista_participantes = lista_participantes;
+    }
+
+    public String getId_firebase() {
+        return id_firebase;
+    }
+
+    public void setId_firebase(String id_firebase) {
+        this.id_firebase = id_firebase;
+    }
+
     public Anuncio() {
 
-   }
+    }
+
 }
