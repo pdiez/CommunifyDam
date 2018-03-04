@@ -77,10 +77,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
 
         //animacion FAB
-        YoYo.with(Techniques.Wave)
+        /*YoYo.with(Techniques.Wave)
                 .duration(400)
                 .repeat(1)
-                .playOn(findViewById(R.id.fabAddAnuncio));
+                .playOn(findViewById(R.id.fabAddAnuncio));*/
 
         fab = findViewById(R.id.fabAddAnuncio);
         fab.setOnClickListener(new View.OnClickListener() {
