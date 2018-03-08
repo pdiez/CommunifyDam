@@ -4,14 +4,13 @@ COMMUNIFY
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![API](https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=23)
 
-Esta es una app para fomentar la buena combivencia entre vecinos utilizando una cadena de favores.
+Esta es una app para fomentar la buena convivencia entre vecinos utilizando una cadena de favores.
 
 FUNCIONALIDAD
 -----
 
 Esta app te permitirá crear y unirte a comunidades.
 Podrás crear anuncios para ofrecer un favor o para buscarlo.
-También podras aceptar favores de los demás ganando así reputación en tu comunidad.
 
 PREREQUISITES
 -----
