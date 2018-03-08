@@ -197,7 +197,7 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
         cal = Calendar.getInstance();
         anuncio.setFecha(day + "/" + month + "/" +year);
         anuncio.setImagen("@drawable/ic_home_black_24dp");
-        anuncio.setCommunityId("-L5oBRy5-xGvGYKlcFDL");
+        anuncio.setCommunityId("-L5xTdw6hye1Hi8LzFjC");
         anuncio.setUserId(mAuth.getCurrentUser().getUid());
 
         DatabaseReference dbanuncio = mData.child("anuncios");

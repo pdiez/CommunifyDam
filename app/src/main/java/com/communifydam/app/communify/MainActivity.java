@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -56,7 +58,16 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    protected SwipeRefreshLayout.OnRefreshListener
+            mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener()
+    {
 
+        @Override
+        public void onRefresh() {
+            Log.v("datos_usuarioo", "refrescando");
+            refrescaComunidades();
+        }
+    };
     private static Integer[] images = {
             android.R.drawable.ic_btn_speak_now,
             android.R.drawable.ic_lock_idle_low_battery,
@@ -67,21 +78,38 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             android.R.drawable.ic_media_pause,
             android.R.drawable.ic_menu_sort_by_size
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
         //cargamos la UI
         setContentView(R.layout.activity_main);
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        lv = (ListView) findViewById(R.id.lvAnuncios);
+
+
 
         coordinator = (LinearLayout) findViewById(R.id.coordinator);
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(mOnRefreshListener);
+
+       lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition =
+                        (lv == null || lv.getChildCount() == 0) ?
+                                0 : lv.getChildAt(0).getTop();
+                swipeLayout.setEnabled( topRowVerticalPosition >= 0);
+            }
+        });
+
+
 
         //animacion FAB
         /*YoYo.with(Techniques.Wave)
@@ -102,16 +130,22 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     }
 
     private void datosUsuario() {
+        Log.v("datos_usuario", "datos usuario");
         //Comprobamos si el usuario esta en FB y tiene el nodo creado, o lo tenemos que crear.
         Query q = database.getReference("usuarios").child(mAuth.getCurrentUser().getUid());
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.v("datos_usuario", "onDataChange");
                 if (dataSnapshot.exists()) {
                     usuario = dataSnapshot.getValue(Usuario.class);
+                    Log.v("datos_usuario", usuario.getEmailUsuario());
                     //cargamos sus comunidades;
                     pintaBurger();
+                    Log.v("datos_usuario", usuario.getEmailUsuario());
                     refrescar();
+                 //   refrescaComunidades();
+
 
                 } else {
                     writeNewUser();
@@ -137,48 +171,19 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 .withSelectionListEnabledForSingleProfile(false)
                 .withHeaderBackground(R.color.black)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario()).withIcon(usuario.getImagen())
+                        new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario())
+                                .withIcon(usuario.getImagen())
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                        Toast.makeText(getApplicationContext(),"Hola",Toast.LENGTH_LONG);
                         return false;
                     }
                 })
                 .build();
 
-        //Menu Hamburger
-       /* Drawer result = new DrawerBuilder()
-                .withAccountHeader(headerResult)
-                .withActivity(this)
-                .withActionBarDrawerToggle(true)
-                .withTranslucentStatusBar(true)
-                .withToolbar(myToolbar)
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName("A").withIcon(R.drawable.ic_home_trans).withIdentifier(1),
-                        new PrimaryDrawerItem().withName("B").withIcon(R.drawable.ic_edit).withBadge("22").withBadgeStyle(new BadgeStyle(Color.RED, Color.RED)).withIdentifier(2).withSelectable(false),
-                        new PrimaryDrawerItem().withName("C").withIcon(R.drawable.ic_home_black_24dp).withIdentifier(3),
-                        new PrimaryDrawerItem().withName("D").withIcon(R.drawable.ic_logout).withIdentifier(4),
-                        new PrimaryDrawerItem().withDescription("A more complex sample").withName("E").withIcon(R.drawable.material_drawer_circle_mask).withIdentifier(5),
-                        new SectionDrawerItem().withName("HHH"),
-                        new SecondaryDrawerItem().withName("F").withIcon(R.drawable.material_drawer_shadow_left),
-                        new SecondaryDrawerItem().withName("G").withIcon(R.drawable.common_google_signin_btn_icon_light).withTag("Bullhorn"),
-                        new DividerDrawerItem(),
-                        new SwitchDrawerItem().withName("Switch").withIcon(R.drawable.material_drawer_badge).withChecked(true).withOnCheckedChangeListener(onCheckedChangeListener),
-                        new ToggleDrawerItem().withName("Toggle").withIcon(R.drawable.material_drawer_badge).withChecked(true).withOnCheckedChangeListener(onCheckedChangeListener))
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if (drawerItem instanceof Nameable) {
-                            Toast.makeText(MainActivity.this, ((Nameable) drawerItem).getName().getText(MainActivity.this), Toast.LENGTH_SHORT).show();
-                        }
-                        return false;
-                    }
-                })
-                .withGenerateMiniDrawer(true)
-                .build();
 
-            */
         Drawer result = new DrawerBuilder()
                 .withAccountHeader(headerResult)
                 .withActivity(this)
@@ -186,13 +191,17 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 .withTranslucentStatusBar(true)
                 .withToolbar(myToolbar)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Crear Comunidad de prueba").withIcon(R.drawable.ic_home_trans).withIdentifier(1),
-                        new PrimaryDrawerItem().withName("Unirse a comunidad").withIcon(R.drawable.ic_home_trans).withIdentifier(2))
+                        new PrimaryDrawerItem().withName("Crear Comunidad").withIcon(R.drawable.ic_home_trans).withIdentifier(1),
+                        new PrimaryDrawerItem().withName("Unirse a comunidad").withIcon(R.drawable.ic_home_trans).withIdentifier(2),
+                        new PrimaryDrawerItem().withName("Cambiar foto de perfil").withIcon(R.drawable.ic_home_trans).withIdentifier(3)
+                )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if(position==1) {
                             addComunidad();
+                        } else if (position==3) {
+                           // cambiarFoto();
                         }
                         return false;
                     }
@@ -262,6 +271,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     private void refrescaComunidades() {
         //buscamos las comunnidades del usuario : usuarios/uid/comunidades/
+        Log.v("refrescaComunidades", "refresca");
         Query q = database.getReference("usuarios").child(mAuth.getCurrentUser().getUid()).child("comunidades").orderByKey();
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -274,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
                                     comunidades.add(dataSnapshot.getValue(Comunidad.class));
+                                    Log.v("datos_usuario", "Llamando a refrescaAnuncios");
                                     refrescaAnuncios();
                                 }
 
@@ -299,12 +310,12 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     }
 
     private void refrescaAnuncios() {
-
+        Log.v("datos_usuario", "refrescaAnuncios");
         DatabaseReference dbanuncios = database.getReference("anuncios");
-        anuncios.clear();
         dbanuncios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                anuncios.clear();
                 if (dataSnapshot!=null) {
                     for (DataSnapshot d : dataSnapshot.getChildren()) {
                         if  (usuario.getComunidades().contains(d.child("communityId").getValue())) {
@@ -339,16 +350,11 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         } else {
 
             fab.setEnabled(true);
-
-            DatabaseReference dbcomunidades = database.getReference("comunidades");
-
-
-            lv = findViewById(R.id.lvAnuncios);
-
             AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.mini_anuncio, anuncios);
             lv.setAdapter(adapter);
 
         }
+        Log.v("datos_usuario", "refrescaLista");
         swipeLayout.setRefreshing(false);
     }
 
@@ -465,22 +471,21 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     }
 
-    protected SwipeRefreshLayout.OnRefreshListener
-            mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener()
-    {
-        @Override
-        public void onRefresh() {
 
-            refrescaComunidades();
-        }
-    };
 
-    private void refrescar() {
+   private void refrescar() {
+        Log.v("datos_usuario", "refrescando antes de runnable");
         swipeLayout.post(new Runnable() {
             @Override
             public void run() {
+                Log.v("datos_usuario", "Seteando refresh a true");
                 swipeLayout.setRefreshing(true);
+                refrescaComunidades();
+
             }
         });
     }
+
+
+
 }
