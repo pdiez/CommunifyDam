@@ -6,6 +6,6 @@ package com.communifydam.app.communify;
 
 public class FragmentAddAnuncio_4 {
 
-
+//fragment vacío, se puede borrar
 
 }

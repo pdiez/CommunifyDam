@@ -1,6 +1,7 @@
 package com.communifydam.app.communify;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by 2912 on 07/02/2018.
@@ -22,15 +25,25 @@ import android.widget.RadioGroup;
 
 
 public class AnuncioDialog extends DialogFragment {
+
     private int paso = 0;
+    private ArrayList<String> lista_comunidades;//Para el Fragment2
+
+    AnuncioDialog myDialog;
+
+    public AnuncioDialog() {
+        //lista_comunidades=b.getStringArrayList("comunidades");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        lista_comunidades=getArguments().getStringArrayList("comunidades");
+
         View v = inflater.inflate(R.layout.anuncio_add, container);
         final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPager);
-        vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager()));
-
+        vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager(),lista_comunidades));
 
         paso = 0;
 

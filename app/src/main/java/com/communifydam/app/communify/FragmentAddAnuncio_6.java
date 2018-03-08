@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class FragmentAddAnuncio_6 extends Fragment {
 
-    private TextView tv_elige_com;
+
     private ListView lv_com;
     private Button bt_crearAnuncio;
 
@@ -33,9 +33,9 @@ public class FragmentAddAnuncio_6 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.add_anuncio_step_5, container, false);
 
-        lv_com = (ListView)v.findViewById(R.id.lv_comunidades_anuncio);
+
         bt_crearAnuncio = (Button)v.findViewById(R.id.bt_crear_anuncio);
-        tv_elige_com = (TextView) v.findViewById(R.id.tv_elige_com);
+
 
         ViewPager vp=(ViewPager) this.getParentFragment().getView().findViewById(R.id.dgPager);
         AdaptadorPagerAddAnuncio mi_vp=(AdaptadorPagerAddAnuncio)vp.getAdapter();

@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_drawer_accent"
+        android:paddingTop="100dp"
+        app:srcCompat="@color/material_drawer_accent" />
 
     <TextView
         android:id="@+id/text_agregar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -39,16 +47,17 @@
             android:layout_weight="1"
             android:ems="10"
             android:fontFamily="casual"
+            android:hint="Titulo"
             android:inputType="textPersonName"
-            android:text="@string/wizar_anuncio_step2_EditTex_titulo_anuncio"
             android:textAlignment="textStart"
             android:textColor="@color/accent"
+            android:textColorHint="@color/accent"
             android:textStyle="bold|italic" />
     </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:id="@+id/text_descripcion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -56,6 +65,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="@string/wizar_anuncio_step2_Text_View_descrip"
+        android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
@@ -68,9 +78,10 @@
         android:id="@+id/textInputLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:textColorHint="@color/accent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -79,15 +90,37 @@
         <EditText
             android:id="@+id/et_descripcion"
             android:layout_width="match_parent"
-            android:layout_height="113dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:fontFamily="casual"
+            android:hint="Description"
             android:inputType="textPersonName"
             android:maxLines="6"
-            android:text="@string/wizar_anuncio_step2_EditText_description"
             android:textColor="@color/accent"
             android:textStyle="bold|italic" />
     </android.support.design.widget.TextInputLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_elegirCom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="Elige la comunidad  "
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="398dp" />
+
+    <Spinner
+        android:id="@+id/spinner_com"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="482dp" />
+
+</LinearLayout>

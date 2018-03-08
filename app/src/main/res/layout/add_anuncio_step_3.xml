@@ -7,24 +7,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_selec_fecha"
+    <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="@string/wizar_anuncio_step3_TextView_calendar"
-        android:textAlignment="center"
-        android:textColor="@color/accent"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:background="@color/material_drawer_accent"
+        android:paddingTop="100dp"
+        app:srcCompat="@color/material_drawer_accent" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:elevation="0dp"
+        android:text="SALTAR ESTE PASO" />
 
     <DatePicker
         android:id="@+id/selector_fecha"
-        android:layout_width="332dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
         android:headerBackground="@drawable/btnhover"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -28,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -55,6 +57,9 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
     private TimePicker tp;
     private ListView lv_com;
     private Button bt_crearAnuncio;
+    private Spinner spinner_com;
+
+    private ArrayList<String> lista_comunidades;
 
     private String date;
     private String hora;
@@ -65,6 +70,10 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
     private static int minute;
     private static int hour;
+
+    public void setSpinner_com(Spinner spinner_com) {
+        this.spinner_com = spinner_com;
+    }
 
     public void setTp(TimePicker tp) {
         this.tp = tp;
@@ -111,8 +120,9 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
 
 
-    public AdaptadorPagerAddAnuncio(FragmentManager fm) {
+    public AdaptadorPagerAddAnuncio(FragmentManager fm, ArrayList<String> lista_comunidades) {
         super(fm);
+        this.lista_comunidades=lista_comunidades;
     }
 
     @Override
@@ -133,7 +143,9 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
                 return f;
             case 1:
                 f = new FragmentAddAnuncio_2();
-
+                Bundle b=new Bundle();
+                b.putStringArrayList("comunidades", lista_comunidades);
+                f.setArguments(b);
                 return f;
             case 2:
                 f = new FragmentAddAnuncio_3();
@@ -203,8 +215,6 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
         DatabaseReference dbanuncio = mData.child("anuncios");
         String mkey = dbanuncio.push().getKey();
         dbanuncio.child(mkey).setValue(anuncio);
-
-
 
 
         hour = tp.getHour();

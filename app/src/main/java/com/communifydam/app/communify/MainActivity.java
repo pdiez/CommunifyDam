@@ -441,6 +441,13 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     public void addAnuncio() {
         AnuncioDialog dg = new AnuncioDialog();
+        Bundle bundle=new Bundle();
+        ArrayList<String> lista_comunidades=new ArrayList<>();
+        lista_comunidades.add("Comunidad 1"); //prueba para iniciar Dialog con comunidades cargadas
+        lista_comunidades.add("Comunidad 2");
+        lista_comunidades.add("Comunidad 3");
+        bundle.putStringArrayList("comunidades", lista_comunidades);
+        dg.setArguments(bundle);
         dg.show(getSupportFragmentManager(), null);
 
     }
