@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
     FloatingActionButton fab;
     Toolbar myToolbar;
+    private LinearLayout coordinator;
+    private SwipeRefreshLayout swipeLayout;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -75,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        coordinator = (LinearLayout) findViewById(R.id.coordinator);
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(mOnRefreshListener);
 
         //animacion FAB
         /*YoYo.with(Techniques.Wave)
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                     usuario = dataSnapshot.getValue(Usuario.class);
                     //cargamos sus comunidades;
                     pintaBurger();
-                    refrescaComunidades();
+                    refrescar();
 
                 } else {
                     writeNewUser();
@@ -342,6 +349,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             lv.setAdapter(adapter);
 
         }
+        swipeLayout.setRefreshing(false);
     }
 
     private  void tostar(String texto) {
@@ -455,5 +463,24 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     public void handleDialogClose(DialogInterface dialog) {
         refrescaComunidades();
 
+    }
+
+    protected SwipeRefreshLayout.OnRefreshListener
+            mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener()
+    {
+        @Override
+        public void onRefresh() {
+
+            refrescaComunidades();
+        }
+    };
+
+    private void refrescar() {
+        swipeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeLayout.setRefreshing(true);
+            }
+        });
     }
 }
