@@ -9,8 +9,10 @@ import java.util.ArrayList;
 public class Comunidad {
 
     private String nombre;
+    private String descripcion;
     private String ownerId;
     private String pin;
+    private String uid;
 
     public String getNombre() {
         return nombre;
@@ -34,6 +36,22 @@ public class Comunidad {
 
     public void setPin(String pin) {
         this.pin = pin;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Comunidad() {

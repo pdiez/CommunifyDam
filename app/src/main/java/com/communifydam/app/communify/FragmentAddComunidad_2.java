@@ -28,6 +28,7 @@ public class FragmentAddComunidad_2 extends Fragment {
         AdaptadorPagerAddComunidad mi_vp=(AdaptadorPagerAddComunidad)vp.getAdapter();
         et_descripcion_comunidad=(EditText)v.findViewById(R.id.et_descripcion_comunidad);
         mi_vp.setEt_descripcion_comunidad(et_descripcion_comunidad);
+
         ga=(GrabarAnuncio)mi_vp;//Está por ver
         crear_comunidad = (Button)v.findViewById(R.id.crearComunidad);
         crear_comunidad.setOnClickListener(new View.OnClickListener() {

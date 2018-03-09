@@ -7,26 +7,25 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +41,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements DialogCloseListener {
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     String email_usuario;
     Usuario usuario;
     ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
+    ArrayList<Comunidad> comunidadesFull = new ArrayList<Comunidad>();
     ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
     FloatingActionButton fab;
     Toolbar myToolbar;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         lv = (ListView) findViewById(R.id.lvAnuncios);
-
+        cargaComunidadesFull();
 
 
         coordinator = (LinearLayout) findViewById(R.id.coordinator);
@@ -127,6 +128,28 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         //el usuario tiene el perfil completo?
         datosUsuario();
+    }
+
+    private void cargaComunidadesFull() {
+        Query q = database.getReference("comunidades").orderByKey();
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot ) {
+                comunidadesFull.clear();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot coms : dataSnapshot.getChildren()) {
+                        Comunidad c = coms.getValue(Comunidad.class);
+                        comunidadesFull.add(c);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void datosUsuario() {
@@ -200,6 +223,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if(position==1) {
                             addComunidad();
+                        } else if (position==2) {
+                            joinComunidad();
                         } else if (position==3) {
                            // cambiarFoto();
                         }
@@ -207,6 +232,55 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                     }
                 })
                 .build();
+
+    }
+
+    private void joinComunidad() {
+
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setTitle(R.string.mainDialogEntrarComunidad);
+        dialog.setContentView(R.layout.join_comunidad);
+        dialog.show();
+        final Spinner spn = (Spinner) dialog.findViewById(R.id.spnJoinCom);
+
+        List<String> spinnerArray =  new ArrayList<String>();
+        for(Comunidad c : comunidadesFull) {
+            spinnerArray.add(c.getNombre());
+        }
+        if (!spinnerArray.isEmpty()) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
+
+            spn.setAdapter(adapter);
+            spn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    EditText txt = (EditText) dialog.findViewById(R.id.edtPin) ;
+                    if (!comunidadesFull.get(position).getPin().isEmpty()) {
+                        txt.setText(comunidadesFull.get(position).getPin());
+                        txt.setTag(comunidadesFull.get(position));
+                    }
+                    txt.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            Button btn = (Button) dialog.findViewById(R.id.btnJoinCom);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditText txt = (EditText) dialog.findViewById(R.id.edtPin) ;
+                    Comunidad c = (Comunidad) txt.getTag();
+                    if (!comunidades.contains(c)) {
+                        usuario.getComunidades().add(c.getUid());
+                        updateUserData();
+                    }
+                }
+            });
+
+        }
 
     }
 
@@ -426,7 +500,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         c.setOwnerId(mAuth.getCurrentUser().getUid());
         c.setPin("123456");
 
-              DatabaseReference dbcomunidades = database.getReference("comunidades");
+        DatabaseReference dbcomunidades = database.getReference("comunidades");
         String keycom = dbcomunidades.push().getKey();
         dbcomunidades.child(keycom).setValue(c);
 

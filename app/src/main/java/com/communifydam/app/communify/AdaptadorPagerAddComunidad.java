@@ -69,9 +69,11 @@ public class AdaptadorPagerAddComunidad extends FragmentPagerAdapter implements 
         Comunidad comunidad = new Comunidad();
         comunidad.setNombre(et_nombre_comunidad.getText().toString());
         comunidad.setOwnerId(mAuth.getCurrentUser().getUid());
-        comunidad.setPin(et_descripcion_comunidad.getText().toString());
+        comunidad.setDescripcion(et_descripcion_comunidad.getText().toString());
+        comunidad.setPin("12345678");
         DatabaseReference dbanuncio = mData.child("comunidades");
         String mkey = dbanuncio.push().getKey();
+        comunidad.setUid(mkey);
         dbanuncio.child(mkey).setValue(comunidad);
 
     }

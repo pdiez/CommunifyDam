@@ -54,4 +54,5 @@
     <string name="AddComunidad_tv_descripcion">¿Te gustaría poner una breve descripción sobre tu Comunidad?</string>
     <string name="AddComunidad_descripcion_comunidad">Descripción Comunidad</string>
     <string name="AddComunidad_crear_comunidad">Crear Comunidad</string>
+    <string name="mainDialogEntrarComunidad">Join a community</string>
 </resources>
