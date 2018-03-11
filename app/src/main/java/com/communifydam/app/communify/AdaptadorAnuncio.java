@@ -16,11 +16,11 @@ import java.util.List;
  * Created by 2912 on 16/01/2018.
  */
 
-public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
+public class AdaptadorAnuncio extends ArrayAdapter<MiniAnuncio>{
 
     Context context;
 
-    public AdaptadorAnuncio(Context context, int resourceId, List<Anuncio> items){
+    public AdaptadorAnuncio(Context context, int resourceId, List<MiniAnuncio> items){
         super(context, resourceId, items);
         this.context = context;
     }
@@ -34,7 +34,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
 
     public View getView(int position, View convertView, ViewGroup parent){
         ViewHolder holder;
-        Anuncio rowItem = getItem(position);
+        MiniAnuncio rowItem = getItem(position);
 
         LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null){
@@ -48,11 +48,12 @@ public class AdaptadorAnuncio extends ArrayAdapter<Anuncio>{
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();
+
         Drawable img = Drawable.createFromPath(rowItem.getImagen());
         holder.image.setImageDrawable(img);
         holder.titulo.setText(rowItem.getTitulo());
         holder.descripcion.setText(rowItem.getDescripcion());
-        holder.anunciante.setText(rowItem.getUserId());
+        holder.anunciante.setText(rowItem.getAnunciante());
         holder.fecha.setText(rowItem.getFecha());
 
         return convertView;

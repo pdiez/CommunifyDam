@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     ArrayList<Comunidad> comunidades = new ArrayList<Comunidad>();
     ArrayList<Comunidad> comunidadesFull = new ArrayList<Comunidad>();
     ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+    ArrayList<MiniAnuncio> minianuncios = new ArrayList<MiniAnuncio>();
     FloatingActionButton fab;
     Toolbar myToolbar;
     private LinearLayout coordinator;
@@ -561,15 +562,37 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
            fab.setEnabled(false);
 
         } else {
+            rellenaMiniAnuncios();
             vg.removeView(layout);
             lv.setVisibility(View.VISIBLE);
             fab.setEnabled(true);
-            AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.mini_anuncio, anuncios);
+            AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.mini_anuncio, minianuncios);
             lv.setAdapter(adapter);
 
         }
         Log.v("datos_usuario", "refrescaLista");
         swipeLayout.setRefreshing(false);
+    }
+
+    private void rellenaMiniAnuncios() {
+        minianuncios.clear();
+        for(Anuncio a : anuncios) {
+            MiniAnuncio m = new MiniAnuncio();
+            m.setDescripcion(a.getDescripcion());
+            m.setExpira(a.getExpira());
+            m.setFecha(a.getFecha());
+            m.setImagen(a.getImagen());
+            m.setTipo(a.getTipo());
+            m.setTitulo(a.getTitulo());
+            for (Comunidad c : comunidades) {
+                if (a.getCommunityId().equals(c.getUid())) {
+                    m.setComunidad(c.getNombre());
+                }
+            }
+            m.setAnunciante("Pepe");
+
+            minianuncios.add(m);
+        }
     }
 
     private  void tostar(String texto) {
