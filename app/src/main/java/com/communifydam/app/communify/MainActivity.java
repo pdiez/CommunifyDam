@@ -3,9 +3,11 @@ package com.communifydam.app.communify;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -27,6 +29,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,13 +39,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.mikepenz.materialdrawer.*;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
+import android.support.annotation.ColorInt;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,21 +81,19 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             refrescaComunidades();
         }
     };
-    private static Integer[] images = {
-            android.R.drawable.ic_btn_speak_now,
-            android.R.drawable.ic_lock_idle_low_battery,
-            android.R.drawable.ic_menu_crop,
-            android.R.drawable.ic_menu_call,
-            android.R.drawable.ic_menu_day,
-            android.R.drawable.ic_media_ff,
-            android.R.drawable.ic_media_pause,
-            android.R.drawable.ic_menu_sort_by_size
-    };
+
+    StorageReference mStorage;
+    private ProgressDialog mProgressDialog;
+    private static final int GALLERY_INT =1 ;
+    Uri fotoURL;
+    Drawable drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //cargamos la UI
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mProgressDialog = new ProgressDialog(this);
         setContentView(R.layout.activity_main);
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -166,6 +175,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                     Log.v("datos_usuario", usuario.getEmailUsuario());
                     //cargamos sus comunidades;
                     pintaBurger();
+                    if (usuario.getNombre().isEmpty()) {
+                        rellenaPerfil();
+                    }
                     Log.v("datos_usuario", usuario.getEmailUsuario());
                     refrescar();
                  //   refrescaComunidades();
@@ -174,9 +186,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 } else {
                     writeNewUser();
                 }
-                if (usuario.getNombre().isEmpty()) {
-                    rellenaPerfil();
-                }
+
 
             }
 
@@ -195,8 +205,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 .withSelectionListEnabledForSingleProfile(false)
                 .withHeaderBackground(R.color.black)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario())
-                                .withIcon(usuario.getImagen())
+                       /* new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario())
+                                .withIcon(usuario.getImagen())*/
+                         new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario()).withIcon(drawable)
+                             .withIcon(fotoURL)
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -206,6 +218,12 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                     }
                 })
                 .build();
+
+         Glide.with(MainActivity.this)
+           .load(fotoURL)
+          .fitCenter()
+           .centerCrop()
+          .into(headerResult.getHeaderBackgroundView());
 
 
         Drawer result = new DrawerBuilder()
@@ -234,6 +252,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                            //leaveComunidad();
                         } else if (position==4) {
                             // cambiarFoto();
+
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            startActivityForResult(intent, GALLERY_INT);
                         } else if (position==5) {
                             addAnuncio();
                         } else if (position==6) {
@@ -251,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     private void joinComunidad() {
 
-        final Dialog dialog = new Dialog(MainActivity.this);
+      /*  final Dialog dialog = new Dialog(MainActivity.this);
         dialog.setTitle(R.string.mainDialogEntrarComunidad);
         dialog.setContentView(R.layout.join_comunidad);
         dialog.show();
@@ -294,20 +316,88 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 }
             });
 
+        }*/
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setTitle(R.string.mainDialogEntrarComunidad);
+        dialog.setContentView(R.layout.join_comunidad);
+        dialog.show();
+        final Spinner spn = (Spinner) dialog.findViewById(R.id.spnJoinCom);
+
+        List<String> spinnerArray =  new ArrayList<String>();
+        for(Comunidad c : comunidadesFull) {
+            spinnerArray.add(c.getNombre());
         }
+        if (!spinnerArray.isEmpty()) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
+
+            spn.setAdapter(adapter);
+            final int[] posicion_para_validar = {0};
+            spn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    EditText txt = (EditText) dialog.findViewById(R.id.edtPin) ;
+                    posicion_para_validar[0] = position;
+                    if (!comunidadesFull.get(position).getPin().isEmpty()) {
+                        //txt.setText(comunidadesFull.get(position).getPin());
+                        txt.setHint("PIN");
+                        txt.setTag(comunidadesFull.get(position));
+                    }
+                    txt.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            Button btn = (Button) dialog.findViewById(R.id.btnJoinCom);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditText txt = (EditText) dialog.findViewById(R.id.edtPin) ;
+                    String pin_usuario = String.valueOf(txt.getText());
+                    if (pin_usuario.equals(String.valueOf(comunidadesFull.get(posicion_para_validar[0]).getPin()))){
+                        Comunidad c = (Comunidad) txt.getTag();
+                        if (!comunidades.contains(c)) {
+                            if(usuario.getComunidades()==null) {
+                                ArrayList<String> coms = new ArrayList<String>();
+                                usuario.setComunidades(coms);
+                            }
+                            usuario.getComunidades().add(c.getUid());
+                            updateUserData();
+                            dialog.dismiss();
+                            tostar(getString(R.string.joined_community) + " " + c.getNombre());
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, "PIN not valid.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+        }
+
 
     }
 
 
     //escribe en FB el nodo del usuario autentificado
     private void writeNewUser() {
+
         String email = mAuth.getCurrentUser().getEmail().toString();
         Usuario u = new Usuario(email);
         String uid = mAuth.getCurrentUser().getUid();
+        u.setImagen("@drawable/ic_people");
+        ArrayList<String> c = new ArrayList<String>();
+        u.setComunidades(c);
 
         DatabaseReference dbusuario = database.getReference("usuarios").child(uid);
         dbusuario.push();
         dbusuario.setValue(u);
+        if (u.getNombre().isEmpty()) {
+            rellenaPerfil();
+        }
 
         //usuario = u;
     }
@@ -384,7 +474,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                         });
                     }
                 } else {
-               //     refrescaLista();
+                    refrescaLista();
 
                 }
 
@@ -427,16 +517,17 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     }
 
     private void refrescaLista() {
-
+        ViewGroup vg = findViewById(R.id.maincontenedor);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View layout = inflater.inflate(R.layout.no_comms,null);
         if (comunidades.isEmpty()) {
-            ViewGroup vg = findViewById(R.id.maincontenedor);
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View layout = inflater.inflate(R.layout.no_comms,null);
-            vg.addView(layout);
-            fab.setEnabled(false);
+           lv.setVisibility(View.INVISIBLE);
+           vg.addView(layout);
+           fab.setEnabled(false);
 
         } else {
-
+            vg.removeView(layout);
+            lv.setVisibility(View.VISIBLE);
             fab.setEnabled(true);
             AdaptadorAnuncio adapter = new AdaptadorAnuncio(getApplicationContext(), R.layout.mini_anuncio, anuncios);
             lv.setAdapter(adapter);
@@ -461,74 +552,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         t.show();
     }
 
-    private void addAnuncioTest() {
-        Context context = getApplicationContext();
-        LinearLayout layout = new LinearLayout(context);
-        layout.setOrientation(LinearLayout.VERTICAL);
-
-        final EditText input1 = new EditText(this);
-        input1.setHint(R.string.mainAddAnuncio1);
-        layout.addView(input1);
-
-        final EditText input2 = new EditText(this);
-        input1.setHint(R.string.mainAddAnuncio2);
-        layout.addView(input2);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.mainAddAnuncio);
-
-        builder.setView(layout);
-
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Anuncio a = new Anuncio();
-                a.setImagen(images[0].toString());
-                a.setTitulo(input1.getText().toString());
-                a.setDescripcion(input2.getText().toString());
-                a.setCommunityId(usuario.getComunidades().get(0));
-                a.setUserId(mAuth.getCurrentUser().getUid());
-                a.setFecha("01/02/2015");
-
-                writeNewAnuncio(a);
-
-
-
-
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-
-    }
-
-    private void addComunidadTest() {
-        Comunidad c = new Comunidad();
-        c.setNombre("Comunidad de prueba");
-        c.setOwnerId(mAuth.getCurrentUser().getUid());
-        c.setPin("123456");
-
-        DatabaseReference dbcomunidades = database.getReference("comunidades");
-        String keycom = dbcomunidades.push().getKey();
-        dbcomunidades.child(keycom).setValue(c);
-
-
-
-        ArrayList<String> listacom = new ArrayList<String>();
-        listacom.add(keycom);
-
-        usuario.setComunidades(listacom);
-
-        updateUserData();
-
-    }
-
     private OnCheckedChangeListener onCheckedChangeListener = new OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
@@ -543,6 +566,10 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     public void addAnuncio() {
         AnuncioDialog dg = new AnuncioDialog();
+        Bundle bundle=new Bundle();
+        ArrayList<String> lista_comunidades=new ArrayList<>();
+        refrescaComunidades();bundle.putStringArrayList("comunidades", lista_comunidades);
+        dg.setArguments(bundle);
         dg.show(getSupportFragmentManager(), null);
 
     }
@@ -550,7 +577,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     public void addComunidad() {
         ComunidadDialog dg = new ComunidadDialog();
         dg.show(getSupportFragmentManager(), null);
-
+        cargaComunidadesFull();
     }
 
     @Override
@@ -574,6 +601,45 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GALLERY_INT && resultCode == RESULT_OK){
+            mProgressDialog.setTitle("Subiendo....");
+            mProgressDialog.setMessage("subiendo foto a firebase");
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+            Uri uri = data.getData();
+            StorageReference filePath = mStorage.child("fotos").child(uri.getLastPathSegment());
+            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    mProgressDialog.dismiss();
+
+                    Uri descargarFoto = taskSnapshot.getDownloadUrl();
+                    usuario.setImagen(descargarFoto.toString());
+                    updateUserData();
+                    fotoURL = descargarFoto;
+                    drawable=loadImageFromWeb(usuario.getImagen());
 
 
+                    Toast.makeText(MainActivity.this, "La imagen fue subida correctamente",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+    }
+    private Drawable loadImageFromWeb(String url)
+    {
+        try
+        {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "src name");
+            return d;
+        }catch (Exception e) {
+            System.out.println("Exc="+e);
+            return null;
+        }
+    }
 }

@@ -9,7 +9,7 @@ import android.app.Application;
 public class CommunifyApp extends Application {
 
     private boolean modoDebug = true;
-    private String user = "communifydam@gmail.com";
+    private String user = "test@test.com";
     private String pwd = "123456";
 
 

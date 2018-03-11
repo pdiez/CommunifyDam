@@ -28,7 +28,7 @@ public class FragmentAddAnuncio_3 extends Fragment {
 
 
         date = (DatePicker)v.findViewById(R.id.selector_fecha);
-        text_date = (TextView) v.findViewById(R.id.text_selec_fecha);
+
 
         ViewPager vp=(ViewPager) this.getParentFragment().getView().findViewById(R.id.dgPager);
         AdaptadorPagerAddAnuncio mi_vp=(AdaptadorPagerAddAnuncio)vp.getAdapter();

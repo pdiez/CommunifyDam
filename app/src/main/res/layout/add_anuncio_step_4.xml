@@ -7,26 +7,219 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_selec_hora"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/fondo_wizard_anuncio"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_creandoAnuncio"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2"
+            android:fontFamily="@font/caviardreamsbold"
+            android:text="@string/wizard_anuncio01_addinganuncio"
+            android:textColor="@color/colorAccent_tipografia_oscura"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_paso1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:layout_weight="2"
+            android:fontFamily="@font/caviardreamsbold"
+            android:text="@string/wizard_anuncio03_step4"
+            android:textAlignment="textEnd"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="casual"
-        android:text="@string/wizar_anuncio_step4_TextView_seleccion_hora"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
-    <TimePicker
-        android:id="@+id/selector_hora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:headerBackground="@color/accent"
-        android:numbersSelectorColor="@color/colorAccent" />
+        <TextView
+            android:id="@+id/text_selec_hora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/caviardreamsbold"
+            android:text="@string/text_seleccion_hora"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rg_group_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/ib_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1" />
+
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingEnd="50dp"
+                    app:srcCompat="@drawable/ic_healthcare" />
+
+                <RadioButton
+                    android:id="@+id/ib_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                     />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingEnd="50dp"
+                    app:srcCompat="@drawable/ic_paintbrush" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">>
+
+                <RadioButton
+                    android:id="@+id/ib_c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingEnd="50dp"
+                    app:srcCompat="@drawable/ic_garden" />
+
+                <RadioButton
+                    android:id="@+id/ib_d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingEnd="50dp"
+                    app:srcCompat="@drawable/ic_shopping" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/ib_e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingEnd="50dp"
+                    app:srcCompat="@drawable/ic_wifi" />
+
+                <RadioButton
+                    android:id="@+id/ib_f"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingEnd="50dp"
+                    app:srcCompat="@drawable/ic_pets" />
+            </LinearLayout>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/bt_crear_anuncio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary"
+            android:elevation="11dp"
+            android:fontFamily="@font/caviardreamsbold"
+            android:text="@string/bt_crearAnuncio"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 </LinearLayout>
+
+<!--    <ImageButton
+            android:id="@+id/ib_a"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="2"
+            android:adjustViewBounds="true"
+            android:background="@color/cardview_shadow_end_color"
+            android:elevation="0dp"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_healthcare" />
+
+        <ImageButton
+            android:id="@+id/ib_b"
+            style="?attr/imageButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="2"
+            android:adjustViewBounds="true"
+            android:background="@color/cardview_shadow_end_color"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_paintbrush" />  -->

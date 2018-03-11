@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 
 
@@ -21,6 +22,7 @@ public class ComunidadDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.comunidad_add, container);
+
         final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPagerComunidad);
         vp.setAdapter(new AdaptadorPagerAddComunidad(getChildFragmentManager()));
         paso = 0;

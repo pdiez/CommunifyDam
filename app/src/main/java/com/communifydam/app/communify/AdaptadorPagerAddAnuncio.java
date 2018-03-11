@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -28,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -48,13 +50,16 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
     private EditText edit_titulo;
     private EditText edit_descripcion;
-    private RadioGroup group;
-    private RadioButton ofrecer;
-    private RadioButton buscar;
+    private RadioGroup group,iconos;
+    private RadioButton ofrecer,buscar,a,b,c,d,e,f;
+
     private DatePicker dp;
     private TimePicker tp;
     private ListView lv_com;
     private Button bt_crearAnuncio;
+    private Spinner spinner_com;
+
+    private ArrayList<String> lista_comunidades;
 
     private String date;
     private String hora;
@@ -65,6 +70,38 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
     private static int minute;
     private static int hour;
+
+    public void setA(RadioButton a) {
+        this.a = a;
+    }
+
+    public void setB(RadioButton b) {
+        this.b = b;
+    }
+
+    public void setC(RadioButton c) {
+        this.c = c;
+    }
+
+    public void setD(RadioButton d) {
+        this.d = d;
+    }
+
+    public void setE(RadioButton e) {
+        this.e = e;
+    }
+
+    public void setF(RadioButton f) {
+        this.f = f;
+    }
+
+    public void setIconos(RadioGroup iconos) {
+        this.iconos = iconos;
+    }
+
+    public void setSpinner_com(Spinner spinner_com) {
+        this.spinner_com = spinner_com;
+    }
 
     public void setTp(TimePicker tp) {
         this.tp = tp;
@@ -111,8 +148,9 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
 
 
-    public AdaptadorPagerAddAnuncio(FragmentManager fm) {
+    public AdaptadorPagerAddAnuncio(FragmentManager fm, ArrayList<String> lista_comunidades) {
         super(fm);
+        this.lista_comunidades=lista_comunidades;
     }
 
     @Override
@@ -133,7 +171,9 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
                 return f;
             case 1:
                 f = new FragmentAddAnuncio_2();
-
+                Bundle b=new Bundle();
+                b.putStringArrayList("comunidades", lista_comunidades);
+                f.setArguments(b);
                 return f;
             case 2:
                 f = new FragmentAddAnuncio_3();
@@ -141,17 +181,6 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
                 return f;
             case 3:
                 f = new FragmentAddAnuncio_5();
-
-                return f;
-            case 4:
-                f = new FragmentAddAnuncio_6();
-
-                boolean necesitar_chekeado = buscar.isChecked();
-                boolean ofrecer_chekeado= ofrecer.isChecked();
-
-                Log.v("adaptador", edit_titulo.getText().toString());
-                Log.v("adaptador", edit_descripcion.getText().toString());
-                Log.v("adaptador", getDateFromDatePicker(dp).toString());
 
                 return f;
 
@@ -197,14 +226,12 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
         cal = Calendar.getInstance();
         anuncio.setFecha(day + "/" + month + "/" +year);
         anuncio.setImagen("@drawable/ic_home_black_24dp");
-        anuncio.setCommunityId("-L5xTdw6hye1Hi8LzFjC");
+        anuncio.setCommunityId("-L5oBRy5-xGvGYKlcFDL");
         anuncio.setUserId(mAuth.getCurrentUser().getUid());
 
         DatabaseReference dbanuncio = mData.child("anuncios");
         String mkey = dbanuncio.push().getKey();
         dbanuncio.child(mkey).setValue(anuncio);
-
-
 
 
         hour = tp.getHour();
@@ -216,9 +243,9 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
     }
 
     public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
-         day = datePicker.getDayOfMonth();
-         month = datePicker.getMonth();
-         year =  datePicker.getYear();
+        day = datePicker.getDayOfMonth();
+        month = datePicker.getMonth();
+        year =  datePicker.getYear();
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);

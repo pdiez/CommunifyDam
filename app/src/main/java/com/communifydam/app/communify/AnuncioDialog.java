@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by 2912 on 07/02/2018.
@@ -23,14 +25,23 @@ import android.widget.RadioGroup;
 
 public class AnuncioDialog extends DialogFragment {
     private int paso = 0;
+    private ArrayList<String> lista_comunidades;//Para el Fragment2
+
+    AnuncioDialog myDialog;
+
+    public AnuncioDialog() {
+        //lista_comunidades=b.getStringArrayList("comunidades");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        lista_comunidades=getArguments().getStringArrayList("comunidades");
+
         View v = inflater.inflate(R.layout.anuncio_add, container);
         final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPager);
-        vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager()));
-
+        vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager(),lista_comunidades));
 
         paso = 0;
 
@@ -41,7 +52,7 @@ public class AnuncioDialog extends DialogFragment {
         if (paso==0) {
             prev.setEnabled(false);
             next.setEnabled(true);
-        } else if(paso==4) {
+        } else if(paso==3) {   //cambiado a 0.1.2.3
             prev.setEnabled(true);
             next.setEnabled(true);
         } else {
@@ -51,22 +62,22 @@ public class AnuncioDialog extends DialogFragment {
 
 
         vp.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-                                       @Override
-                                       public void onPageSelected(int pos) {
-                                           paso = pos;
-                                           if (paso==0) {
-                                               prev.setEnabled(false);
-                                               next.setEnabled(true);
-                                           } else if(paso==4) {
-                                               prev.setEnabled(true);
-                                               next.setEnabled(true);
-                                               next.setText("Finalizar");
-                                           } else {
-                                               prev.setEnabled(true);
-                                               next.setEnabled(true);
-                                           }
+            @Override
+            public void onPageSelected(int pos) {
+                paso = pos;
+                if (paso==0) {
+                    prev.setEnabled(false);
+                    next.setEnabled(true);
+                } else if(paso==3) {
+                    prev.setEnabled(true);
+                    next.setEnabled(true);
+                    next.setText("Finalizar");
+                } else {
+                    prev.setEnabled(true);
+                    next.setEnabled(true);
+                }
 
-                                       }
+            }
         });
 
 
@@ -74,7 +85,7 @@ public class AnuncioDialog extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(paso==4) {
+                if(paso==3) {
                     dismiss();
                 }
 

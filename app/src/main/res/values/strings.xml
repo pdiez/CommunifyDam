@@ -8,7 +8,7 @@
     <string name="mainDialogPedirPerfilTitulo">Please, give us your name:</string>
     <string name="mainDialogPedirPerfilToast">Your name is set to: </string>
     <string name="mainNoComsTexto1">Seems like you are not a member of a community yet.</string>
-    <string name="mainNoComsTexto2">Please click on the button below to join one or create your own.</string>
+    <string name="mainNoComsTexto2">Please click on menu button to join one or create your own.</string>
     <string name="mainAddAnuncio">Create a post</string>
     <string name="mainAddAnuncio1">Post title</string>
     <string name="mainAddAnuncio2">Post body</string>
@@ -55,4 +55,17 @@
     <string name="AddComunidad_descripcion_comunidad">Community Description</string>
     <string name="AddComunidad_crear_comunidad">CREATE COMMUNITY</string>
     <string name="mainDialogEntrarComunidad">Join a community</string>
+    <string name="activity_registrar_EditTex_contraseña2">Confirm Password</string>
+    <string name="passwords_doesnt_match">Passwords doesn\'t match!</string>
+    <string name="wizard_anuncio01_addinganuncio">ADDING AD...</string>
+    <string name="wizard_anuncio01_step01">STEP 1 OF 4</string>
+    <string name="wizard_anuncio02_step2">STEP 2 OF 4</string>
+    <string name="wizard_anuncio02_eligeCom">Choose community</string>
+    <string name="wizard_anuncio03_step3">STEP 3 OF 4</string>
+    <string name="wizard_anuncio03_bt_saltar">SKIP STEP</string>
+    <string name="wizard_anuncio03_step4">STEP 4 OF 4</string>
+    <string name="wizard_com01_step1">STEP 1 OF 2</string>
+    <string name="wizard_com_adding">ADDING COMMUNITY...</string>
+    <string name="wizard_com02_step2">STEP 2 OF 2</string>
+    <string name="joined_community">Welcome to the community:</string>
 </resources>

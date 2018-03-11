@@ -42,7 +42,7 @@
                     android:hint="@string/activity_registrar_EditTex_usuario"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/black" />
 
 
 
@@ -64,8 +64,30 @@
                     android:drawableLeft="@android:drawable/ic_lock_lock"
                     android:drawableTint="@color/colorPrimary"
                     android:hint="@string/activity_registrar_EditTex_contraseña"
+                    android:inputType="textPassword"
                     android:singleLine="true"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/black" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:background="#FFFFFF"
+                tools:layout_editor_absoluteX="20dp"
+                tools:layout_editor_absoluteY="280dp">
+
+                <EditText
+                    android:id="@+id/password2"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:drawableLeft="@android:drawable/ic_lock_lock"
+                    android:drawableTint="@color/colorPrimary"
+                    android:hint="@string/activity_registrar_EditTex_contraseña2"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout

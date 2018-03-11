@@ -44,13 +44,23 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton signInButton;
+    EditText email;
+    EditText pwd;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        email = findViewById(R.id.username);
+        pwd = findViewById(R.id.password);
 
-
+        Bundle b = getIntent().getExtras();
+        if (b!= null) {
+            String u = b.getString("u");
+            String p = b.getString("p");
+            if (!u.isEmpty()) {  email.setText(u); }
+            if (!p.isEmpty()) {  pwd.setText(u); }
+        }
 
 
         // Configure Google Sign In
@@ -108,8 +118,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText email = findViewById(R.id.username);
-                EditText pwd = findViewById(R.id.password);
                 email.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
                 pwd.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
                 final String val_e = email.getText().toString().trim();
