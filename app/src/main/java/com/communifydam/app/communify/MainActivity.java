@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -216,7 +217,11 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Crear Comunidad").withIcon(R.drawable.ic_home_trans).withIdentifier(1),
                         new PrimaryDrawerItem().withName("Unirse a comunidad").withIcon(R.drawable.ic_home_trans).withIdentifier(2),
-                        new PrimaryDrawerItem().withName("Cambiar foto de perfil").withIcon(R.drawable.ic_home_trans).withIdentifier(3)
+                        new PrimaryDrawerItem().withName("Salir de una comunidad").withIcon(R.drawable.ic_home_trans).withIdentifier(3),
+                        new PrimaryDrawerItem().withName("Cambiar foto de perfil").withIcon(R.drawable.ic_people).withIdentifier(4),
+                        new PrimaryDrawerItem().withName("Crear un anuncio").withIcon(R.drawable.ic_home_trans).withIdentifier(5),
+                        new PrimaryDrawerItem().withName("Cerrar sesión").withIcon(R.drawable.ic_logout).withIdentifier(6),
+                        new PrimaryDrawerItem().withName("Salir").withIcon(R.drawable.common_google_signin_btn_icon_disabled).withIdentifier(7)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -226,7 +231,16 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                         } else if (position==2) {
                             joinComunidad();
                         } else if (position==3) {
-                           // cambiarFoto();
+                           //leaveComunidad();
+                        } else if (position==4) {
+                            // cambiarFoto();
+                        } else if (position==5) {
+                            addAnuncio();
+                        } else if (position==6) {
+                            mAuth.signOut();
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        } else if (position==7) {
+                            finish();
                         }
                         return false;
                     }
