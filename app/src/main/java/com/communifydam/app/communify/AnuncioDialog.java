@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class AnuncioDialog extends DialogFragment {
     private int paso = 0;
     private ArrayList<String> lista_comunidades;//Para el Fragment2
+    private ArrayList<String> keys_comunidades;//Para el Fragment2
 
     AnuncioDialog myDialog;
 
@@ -37,11 +38,12 @@ public class AnuncioDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        lista_comunidades=getArguments().getStringArrayList("comunidades");
+        lista_comunidades=getArguments().getStringArrayList("comunidadesnombre");
+        keys_comunidades=getArguments().getStringArrayList("comunidadeskeys");
 
         View v = inflater.inflate(R.layout.anuncio_add, container);
         final ViewPager vp = (ViewPager) v.findViewById(R.id.dgPager);
-        vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager(),lista_comunidades));
+        vp.setAdapter(new AdaptadorPagerAddAnuncio(getChildFragmentManager(),lista_comunidades, keys_comunidades));
 
         paso = 0;
 
@@ -71,10 +73,11 @@ public class AnuncioDialog extends DialogFragment {
                 } else if(paso==3) {
                     prev.setEnabled(true);
                     next.setEnabled(true);
-                    next.setText("Finalizar");
+                    //next.setVisibility(View.INVISIBLE);
                 } else {
                     prev.setEnabled(true);
                     next.setEnabled(true);
+                  //  next.setVisibility(View.VISIBLE);
                 }
 
             }

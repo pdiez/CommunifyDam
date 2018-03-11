@@ -29,8 +29,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -60,6 +62,7 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
     private Spinner spinner_com;
 
     private ArrayList<String> lista_comunidades;
+    private ArrayList<String> keys_comunidades;
 
     private String date;
     private String hora;
@@ -148,9 +151,10 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
 
 
-    public AdaptadorPagerAddAnuncio(FragmentManager fm, ArrayList<String> lista_comunidades) {
+    public AdaptadorPagerAddAnuncio(FragmentManager fm, ArrayList<String> lista_comunidades, ArrayList<String> keys_comunidades) {
         super(fm);
         this.lista_comunidades=lista_comunidades;
+        this.keys_comunidades=keys_comunidades;
     }
 
     @Override
@@ -208,7 +212,7 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void grabar(String valor_list_view) {
+    public void grabar(String vp) {
 
         Anuncio anuncio = new Anuncio();
 
@@ -219,38 +223,26 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
         }
         anuncio.setTitulo(edit_titulo.getText().toString());
         anuncio.setDescripcion(edit_descripcion.getText().toString());
+        anuncio.setCommunityId(keys_comunidades.get(spinner_com.getSelectedItemPosition()));
 
         day=dp.getDayOfMonth();
         month=dp.getMonth();
         year=dp.getYear();
-        cal = Calendar.getInstance();
         anuncio.setFecha(day + "/" + month + "/" +year);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date cal = Calendar.getInstance().getTime();
+        anuncio.setExpira(df.format(cal));
         anuncio.setImagen("@drawable/ic_home_black_24dp");
-        anuncio.setCommunityId("-L5oBRy5-xGvGYKlcFDL");
         anuncio.setUserId(mAuth.getCurrentUser().getUid());
 
         DatabaseReference dbanuncio = mData.child("anuncios");
         String mkey = dbanuncio.push().getKey();
         dbanuncio.child(mkey).setValue(anuncio);
 
-
-        hour = tp.getHour();
-        minute = tp.getMinute();
-        hora = hour + " " + minute;
-
         Log.v("METODO GRABAR", "ENTRA A GRABAR");
 
     }
 
-    public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
-        day = datePicker.getDayOfMonth();
-        month = datePicker.getMonth();
-        year =  datePicker.getYear();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-
-        return calendar.getTime();
-    }
 }
 

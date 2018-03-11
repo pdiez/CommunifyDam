@@ -13,12 +13,21 @@ public class Anuncio {
    private String titulo;
    private String descripcion;
    private String fecha;
+   private String expira;
    private String userId;
    private String communityId;
    private String imagen;
    private String id_firebase;
    private ArrayList<String> lista_participantes;
    private int tipo; // 0 - Ofrezco 1 - Necesito
+
+    public String getExpira() {
+        return expira;
+    }
+
+    public void setExpira(String expira) {
+        this.expira = expira;
+    }
 
 
     public String getTitulo() {

@@ -4,6 +4,7 @@ package com.communifydam.app.communify;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -24,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -42,12 +44,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.*;
 import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.*;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
+import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
+import com.mikepenz.materialdrawer.util.DrawerImageLoader;
+import com.mikepenz.materialdrawer.util.DrawerUIUtils;
+
 import android.support.annotation.ColorInt;
 
 import java.io.InputStream;
@@ -121,6 +128,36 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         });
 
 
+        DrawerImageLoader.init(new AbstractDrawerImageLoader() {
+            @Override
+            public void set(ImageView imageView, Uri uri, Drawable placeholder, String tag) {
+                Glide.with(imageView.getContext()).load(uri).placeholder(placeholder).into(imageView);
+            }
+
+            @Override
+            public void cancel(ImageView imageView) {
+                Glide.clear(imageView);
+            }
+
+            @Override
+            public Drawable placeholder(Context ctx, String tag) {
+                //define different placeholders for different imageView targets
+                //default tags are accessible via the DrawerImageLoader.Tags
+                //custom ones can be checked via string. see the CustomUrlBasePrimaryDrawerItem LINE 111
+                if (DrawerImageLoader.Tags.PROFILE.name().equals(tag)) {
+                    return DrawerUIUtils.getPlaceHolder(ctx);
+                } else if (DrawerImageLoader.Tags.ACCOUNT_HEADER.name().equals(tag)) {
+                    return new IconicsDrawable(ctx).iconText(" ").backgroundColorRes(com.mikepenz.materialdrawer.R.color.primary).sizeDp(56);
+                } else if ("customUrlItem".equals(tag)) {
+                    return new IconicsDrawable(ctx).iconText(" ").backgroundColorRes(R.color.md_red_500).sizeDp(56);
+                }
+
+                //we use the default one for
+                //DrawerImageLoader.Tags.PROFILE_DRAWER_ITEM.name()
+
+                return super.placeholder(ctx, tag);
+            }
+        });
 
         //animacion FAB
         /*YoYo.with(Techniques.Wave)
@@ -172,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 Log.v("datos_usuario", "onDataChange");
                 if (dataSnapshot.exists()) {
                     usuario = dataSnapshot.getValue(Usuario.class);
-                    Log.v("datos_usuario", usuario.getEmailUsuario());
+                    Log.v("datos_usuario", usuario.getImagen());
                     //cargamos sus comunidades;
                     pintaBurger();
                     if (usuario.getNombre().isEmpty()) {
@@ -200,15 +237,17 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private void pintaBurger() {
 
         //Cabecera Hamburger
-        AccountHeader headerResult = new AccountHeaderBuilder()
+       if (usuario.getImagen()==null) {
+            usuario.setImagen("@drawable/ic_people");
+        }
+        Log.v("datos_usuario", usuario.getImagen());
+        final AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withSelectionListEnabledForSingleProfile(false)
-                .withHeaderBackground(R.color.black)
+                .withHeaderBackground(R.drawable.gradheader)
                 .addProfiles(
-                       /* new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario())
-                                .withIcon(usuario.getImagen())*/
-                         new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario()).withIcon(drawable)
-                             .withIcon(fotoURL)
+                       new ProfileDrawerItem().withName(usuario.getNombre()).withEmail(usuario.getEmailUsuario())
+                                .withIcon(usuario.getImagen())
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -219,11 +258,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 })
                 .build();
 
-         Glide.with(MainActivity.this)
-           .load(fotoURL)
-          .fitCenter()
-           .centerCrop()
-          .into(headerResult.getHeaderBackgroundView());
 
 
         Drawer result = new DrawerBuilder()
@@ -256,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                             Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
                             startActivityForResult(intent, GALLERY_INT);
+                            pintaBurger();
                         } else if (position==5) {
                             addAnuncio();
                         } else if (position==6) {
@@ -567,8 +602,14 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     public void addAnuncio() {
         AnuncioDialog dg = new AnuncioDialog();
         Bundle bundle=new Bundle();
-        ArrayList<String> lista_comunidades=new ArrayList<>();
-        refrescaComunidades();bundle.putStringArrayList("comunidades", lista_comunidades);
+        ArrayList<String> lista_comunidades=new ArrayList<String>();
+        ArrayList<String> keys_comunidades=new ArrayList<String>();
+        for (Comunidad c : comunidades) {
+            lista_comunidades.add(c.getNombre());
+            keys_comunidades.add(c.getUid());
+        }
+        bundle.putStringArrayList("comunidadesnombre", lista_comunidades);
+        bundle.putStringArrayList("comunidadeskeys", keys_comunidades);
         dg.setArguments(bundle);
         dg.show(getSupportFragmentManager(), null);
 

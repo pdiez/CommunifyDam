@@ -48,18 +48,12 @@ public class FragmentAddAnuncio_5 extends Fragment{
         mi_vp.setBt_crearAnuncio(bt_crearAnuncio);
 
         ga=(GrabarAnuncio)mi_vp;//Está por ver
-        /*bt_crearAnuncio.setOnClickListener(new View.OnClickListener() {
+        bt_crearAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (lv_com.getSelectedItem()==null)
-                {ga.grabar("SinSeleccion");}
-                else
-                {
-                    ga.grabar(lv_com.getSelectedItem().toString());
-                }
-
+               ga.grabar("SinSeleccion");
             }
-        });*/
+        });
 
 
         escoger_icono();

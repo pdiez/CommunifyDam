@@ -54,7 +54,7 @@ public class Usuario {
     public Usuario(String email) {
         this.emailUsuario = email;
         this.nombre = "";
-        this.imagen =  "@Drawable/ic_people";
+        this.imagen =  "@drawable/ic_people";
         this.comunidades = new ArrayList<String>();
     }
 }
