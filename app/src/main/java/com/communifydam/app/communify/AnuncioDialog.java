@@ -54,7 +54,7 @@ public class AnuncioDialog extends DialogFragment {
         if (paso==0) {
             prev.setEnabled(false);
             next.setEnabled(true);
-        } else if(paso==4) {
+        } else if(paso==3) {   //cambiado a 0.1.2.3
             prev.setEnabled(true);
             next.setEnabled(true);
         } else {
@@ -70,7 +70,7 @@ public class AnuncioDialog extends DialogFragment {
                                            if (paso==0) {
                                                prev.setEnabled(false);
                                                next.setEnabled(true);
-                                           } else if(paso==4) {
+                                           } else if(paso==3) {
                                                prev.setEnabled(true);
                                                next.setEnabled(true);
                                                next.setText("Finalizar");
@@ -87,7 +87,7 @@ public class AnuncioDialog extends DialogFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(paso==4) {
+                if(paso==3) {
                     dismiss();
                 }
 

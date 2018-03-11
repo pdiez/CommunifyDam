@@ -50,9 +50,9 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
     private EditText edit_titulo;
     private EditText edit_descripcion;
-    private RadioGroup group;
-    private RadioButton ofrecer;
-    private RadioButton buscar;
+    private RadioGroup group,iconos;
+    private RadioButton ofrecer,buscar,a,b,c,d,e,f;
+
     private DatePicker dp;
     private TimePicker tp;
     private ListView lv_com;
@@ -70,6 +70,34 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
     private static int minute;
     private static int hour;
+
+    public void setA(RadioButton a) {
+        this.a = a;
+    }
+
+    public void setB(RadioButton b) {
+        this.b = b;
+    }
+
+    public void setC(RadioButton c) {
+        this.c = c;
+    }
+
+    public void setD(RadioButton d) {
+        this.d = d;
+    }
+
+    public void setE(RadioButton e) {
+        this.e = e;
+    }
+
+    public void setF(RadioButton f) {
+        this.f = f;
+    }
+
+    public void setIconos(RadioGroup iconos) {
+        this.iconos = iconos;
+    }
 
     public void setSpinner_com(Spinner spinner_com) {
         this.spinner_com = spinner_com;
@@ -155,17 +183,11 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
                 f = new FragmentAddAnuncio_5();
 
                 return f;
-            case 4:
+            /*case 4:
                 f = new FragmentAddAnuncio_6();
 
-                boolean necesitar_chekeado = buscar.isChecked();
-                boolean ofrecer_chekeado= ofrecer.isChecked();
 
-                Log.v("adaptador", edit_titulo.getText().toString());
-                Log.v("adaptador", edit_descripcion.getText().toString());
-                Log.v("adaptador", getDateFromDatePicker(dp).toString());
-
-                return f;
+                return f;*/
 
             default:
                 return new FragmentAddAnuncio_1();
@@ -235,5 +257,7 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
         return calendar.getTime();
     }
+
+
 }
 

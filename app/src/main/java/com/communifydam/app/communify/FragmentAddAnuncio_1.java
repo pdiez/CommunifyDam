@@ -31,7 +31,7 @@ public class FragmentAddAnuncio_1 extends Fragment {
         group = (RadioGroup)v.findViewById(R.id.grupo);
         ofrecer = (RadioButton)v.findViewById(R.id.radioOfrecer);
         buscar = (RadioButton)v.findViewById(R.id.radioBuscar);
-        tv = (TextView) v.findViewById(R.id.tvf1);
+       // tv = (TextView) v.findViewById(R.id.tvf1);
        /* */
 
         vp=(ViewPager) this.getParentFragment().getView().findViewById(R.id.dgPager);
