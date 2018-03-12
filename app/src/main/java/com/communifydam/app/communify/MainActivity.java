@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -272,9 +273,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                         new PrimaryDrawerItem().withName("Unirse a comunidad").withIcon(R.mipmap.com_in).withIdentifier(2),
                         new PrimaryDrawerItem().withName("Salir de una comunidad").withIcon(R.mipmap.com_out).withIdentifier(3),
                         new PrimaryDrawerItem().withName("Cambiar foto de perfil").withIcon(R.drawable.ic_people).withIdentifier(4),
-                        new PrimaryDrawerItem().withName("Crear un anuncio").withIcon(R.drawable.ic_home_trans).withIdentifier(5),
+                        new PrimaryDrawerItem().withName("Crear un anuncio").withIcon(R.drawable.ic_add).withIdentifier(5),
                         new PrimaryDrawerItem().withName("Cerrar sesión").withIcon(R.drawable.ic_logout).withIdentifier(6),
-                        new PrimaryDrawerItem().withName("Salir").withIcon(R.drawable.common_google_signin_btn_icon_disabled).withIdentifier(7)
+                        new PrimaryDrawerItem().withName("Salir").withIcon(R.drawable.ic_exit).withIdentifier(7)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -297,6 +298,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                         } else if (position==6) {
                             mAuth.signOut();
                             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else if (position==7) {
                             finish();
                         }
@@ -356,6 +359,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         final Dialog dialog = new Dialog(MainActivity.this);
         dialog.setTitle(R.string.mainDialogEntrarComunidad);
         dialog.setContentView(R.layout.join_comunidad);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         dialog.show();
         final Spinner spn = (Spinner) dialog.findViewById(R.id.spnJoinCom);
 

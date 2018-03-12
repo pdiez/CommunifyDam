@@ -55,9 +55,10 @@ public class FragmentAddAnuncio_2 extends Fragment {
     public void rellenar_comunidades(){
 
         Bundle b= this.getArguments();
+        lista_comunidades = new ArrayList<String>();
         lista_comunidades=b.getStringArrayList("comunidades");
         //lista_comunidades = getArguments().getStringArrayList("comunidades");
-
+        sp_com.setAdapter(null);
         ArrayAdapter<String> adaptador = new ArrayAdapter <String>(getContext(),
                 android.R.layout.simple_spinner_item, lista_comunidades);
 

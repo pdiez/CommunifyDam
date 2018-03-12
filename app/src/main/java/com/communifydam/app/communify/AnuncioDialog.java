@@ -70,14 +70,17 @@ public class AnuncioDialog extends DialogFragment {
                 if (paso==0) {
                     prev.setEnabled(false);
                     next.setEnabled(true);
+                    next.setText(getString(R.string.next_button));
                 } else if(paso==3) {
                     prev.setEnabled(true);
                     next.setEnabled(true);
+                    next.setText(getString(R.string.next_button2));
                     //next.setVisibility(View.INVISIBLE);
                 } else {
                     prev.setEnabled(true);
                     next.setEnabled(true);
                   //  next.setVisibility(View.VISIBLE);
+                    next.setText(getString(R.string.next_button));
                 }
 
             }

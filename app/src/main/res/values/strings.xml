@@ -42,10 +42,11 @@
     <string name="description">Descripcion</string>
     <string name="descrip">... y una breve descripción.</string>
     <string name="textview_calendar">Selecciona una fecha...</string>
-    <string name="text_seleccion_hora">Selecciona la hora...</string>
+    <string name="text_seleccion_hora">Selecciona un icono...</string>
     <string name="text_view_elige_Com">Elige tu comunidad para este anuncio</string>
     <string name="back_button">Atras</string>
     <string name="next_button">Siguiente</string>
+    <string name="next_button2">Finalizar</string>
     <string name="bt_crearAnuncio">CREAR ANUNCIO</string>
     <string name="titulo_anuncio">Título</string>
     <string name="text_descripcion">Descripción</string>

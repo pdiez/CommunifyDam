@@ -30,6 +30,7 @@ public class FragmentAddComunidad_2 extends Fragment {
         mi_vp.setEt_descripcion_comunidad(et_descripcion_comunidad);
 
         ga=(GrabarAnuncio)mi_vp;//Está por ver
+
         crear_comunidad = (Button)v.findViewById(R.id.crearComunidad);
         crear_comunidad.setOnClickListener(new View.OnClickListener() {
             @Override
