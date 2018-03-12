@@ -407,6 +407,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                             }
                             usuario.getComunidades().add(c.getUid());
                             updateUserData();
+                            cargaComunidadesFull();
+                            refrescar();
                             dialog.dismiss();
                             tostar(getString(R.string.joined_community) + " " + c.getNombre());
                         }
@@ -497,6 +499,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             @Override
             public void onDataChange(DataSnapshot dataSnapshot ) {
                 if (dataSnapshot.exists()) {
+                    comunidades.clear();
                     for(DataSnapshot coms : dataSnapshot.getChildren()) {
                         Query q = database.getReference("comunidades").child(coms.getValue().toString());
                         q.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -653,7 +656,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
-        refrescaComunidades();
+        cargaComunidadesFull();
+        refrescar();
 
     }
 
