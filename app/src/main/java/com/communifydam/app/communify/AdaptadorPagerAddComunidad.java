@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AdaptadorPagerAddComunidad extends FragmentPagerAdapter implements GrabarAnuncio {
 
+    private EditText et_pin;
     private Anuncio anuncio;
     private EditText et_nombre_comunidad;
     private EditText et_descripcion_comunidad;
@@ -70,7 +71,7 @@ public class AdaptadorPagerAddComunidad extends FragmentPagerAdapter implements 
         comunidad.setNombre(et_nombre_comunidad.getText().toString());
         comunidad.setOwnerId(mAuth.getCurrentUser().getUid());
         comunidad.setDescripcion(et_descripcion_comunidad.getText().toString());
-        comunidad.setPin("12345678");
+        comunidad.setPin(et_pin.getText().toString());
         DatabaseReference dbanuncio = mData.child("comunidades");
         String mkey = dbanuncio.push().getKey();
         comunidad.setUid(mkey);

@@ -68,4 +68,5 @@
     <string name="wizard_com_adding">ADDING COMMUNITY...</string>
     <string name="wizard_com02_step2">STEP 2 OF 2</string>
     <string name="joined_community">Welcome to the community:</string>
+    <string name="tv_pin">Please, enter a pin number for this Community</string>
 </resources>

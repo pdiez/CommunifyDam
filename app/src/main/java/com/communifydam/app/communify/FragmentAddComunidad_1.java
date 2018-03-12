@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 public class FragmentAddComunidad_1 extends Fragment {
 
+    private EditText pin;
     private EditText et_nombre_comunidad;
     ViewPager vp;
 
@@ -27,6 +28,7 @@ public class FragmentAddComunidad_1 extends Fragment {
         View v = inflater.inflate(R.layout.add_comunidad_step_1, container, false);
         vp = (ViewPager) this.getParentFragment().getView().findViewById(R.id.dgPagerComunidad);
         et_nombre_comunidad = (EditText)v.findViewById(R.id.et_nombre_comunidad);
+        pin = (EditText)v.findViewById(R.id.et_pin);
         AdaptadorPagerAddComunidad mi_vp = (AdaptadorPagerAddComunidad) vp.getAdapter();
         mi_vp.setEt_nombre_comunidad(et_nombre_comunidad);
 
