@@ -34,18 +34,26 @@ public class FragmentAddAnuncio_5 extends Fragment{
 
         bt_crearAnuncio = (Button)v.findViewById(R.id.bt_crear_anuncio);
         tv_hora = (TextView) v.findViewById(R.id.text_selec_hora);
-        a = (RadioButton) v.findViewById(R.id.ib_a);
-        b = (RadioButton) v.findViewById(R.id.ib_b);
-        c = (RadioButton) v.findViewById(R.id.ib_c);
-        d = (RadioButton) v.findViewById(R.id.ib_d);
-        e = (RadioButton) v.findViewById(R.id.ib_e);
-        f = (RadioButton) v.findViewById(R.id.ib_f);
+        a = (RadioButton) v.findViewById(R.id.ib_a); // brocha
+        b = (RadioButton) v.findViewById(R.id.ib_b); // pets
+        c = (RadioButton) v.findViewById(R.id.ib_c); // wifi
+        d = (RadioButton) v.findViewById(R.id.ib_d); // cart
+        e = (RadioButton) v.findViewById(R.id.ib_e); // salud
+        f = (RadioButton) v.findViewById(R.id.ib_f); // garden
         iconos = (RadioGroup) v.findViewById(R.id.rg_group_icon);
 
         ViewPager vp=(ViewPager) this.getParentFragment().getView().findViewById(R.id.dgPager);
         AdaptadorPagerAddAnuncio mi_vp=(AdaptadorPagerAddAnuncio)vp.getAdapter();
-        mi_vp.setIconos(iconos);
+
+        mi_vp.setA(a);
+        mi_vp.setB(b);
+        mi_vp.setC(c);
+        mi_vp.setD(d);
+        mi_vp.setE(e);
+        mi_vp.setF(f);
+
         mi_vp.setBt_crearAnuncio(bt_crearAnuncio);
+
 
         ga=(GrabarAnuncio)mi_vp;//Está por ver
         bt_crearAnuncio.setOnClickListener(new View.OnClickListener() {
@@ -56,43 +64,8 @@ public class FragmentAddAnuncio_5 extends Fragment{
         });
 
 
-        escoger_icono();
-
         return v;
     }
 
-    private void escoger_icono() {
-
-        int clicked = iconos.getCheckedRadioButtonId();
-
-        switch (clicked) {
-            case R.id.ib_a:
-                if (a.isChecked())
-
-                    break;
-            case R.id.ib_b:
-                if (b.isChecked())
-
-                    break;
-            case R.id.ib_c:
-                if (c.isChecked())
-
-                    break;
-            case R.id.ib_d:
-                if (d.isChecked())
-
-                    break;
-            case R.id.ib_e:
-                if (e.isChecked())
-
-                    break;
-            case R.id.ib_f:
-                if (f.isChecked())
-
-                    break;
-        }
-
-
-    }
 
 }

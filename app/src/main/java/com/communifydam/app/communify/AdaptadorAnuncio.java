@@ -26,7 +26,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<MiniAnuncio>{
     }
 
     public class ViewHolder{
-        ImageView image;
+        ImageView image, tipo;
 
         TextView titulo, anunciante, descripcion, fecha;
     }
@@ -41,6 +41,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<MiniAnuncio>{
             convertView = mInflater.inflate(R.layout.mini_anuncio, null);
             holder = new ViewHolder();
             holder.image = (ImageView)convertView.findViewById(R.id.image);
+            holder.tipo = (ImageView)convertView.findViewById(R.id.imgTipo);
             holder.titulo = (TextView)convertView.findViewById(R.id.txtTitulo);
             holder.anunciante = (TextView)convertView.findViewById(R.id.txtAnunciante);
             holder.descripcion = (TextView)convertView.findViewById(R.id.txtDescripcion);
@@ -49,8 +50,15 @@ public class AdaptadorAnuncio extends ArrayAdapter<MiniAnuncio>{
         } else
             holder = (ViewHolder)convertView.getTag();
 
-        Drawable img = Drawable.createFromPath(rowItem.getImagen());
-        holder.image.setImageDrawable(img);
+        int img = context.getResources().getIdentifier(rowItem.getImagen(), "drawable", context.getPackageName());
+        holder.image.setImageResource(img);
+        if (rowItem.getTipo()==1) {
+            holder.tipo.setBackground(context.getResources().getDrawable(R.color.colorPrimary, null));
+        } else {
+            holder.tipo.setBackground(context.getResources().getDrawable(R.color.colorAccent, null));
+        }
+
+
         holder.titulo.setText(rowItem.getTitulo());
         holder.descripcion.setText(rowItem.getDescripcion());
         holder.anunciante.setText(rowItem.getAnunciante());

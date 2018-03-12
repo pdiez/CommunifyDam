@@ -31,6 +31,7 @@ public class FragmentAddComunidad_1 extends Fragment {
         pin = (EditText)v.findViewById(R.id.et_pin);
         AdaptadorPagerAddComunidad mi_vp = (AdaptadorPagerAddComunidad) vp.getAdapter();
         mi_vp.setEt_nombre_comunidad(et_nombre_comunidad);
+        mi_vp.setEt_pin(pin);
 
 
         return v;

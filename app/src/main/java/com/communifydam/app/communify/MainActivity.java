@@ -590,7 +590,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 }
             }
             m.setAnunciante("Pepe");
-            m.setImagen("@drawable/ic_pets");
+            m.setImagen(a.getImagen());
 
             minianuncios.add(m);
         }

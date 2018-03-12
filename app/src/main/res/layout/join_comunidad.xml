@@ -18,15 +18,19 @@
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Elegir Comunidad" />
+            android:fontFamily="@font/caviardreamsbold"
+            android:text="@string/joinComunidad_tv_elige"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent_tipografia_oscura"
+            android:textSize="24sp" />
 
         <Spinner
             android:id="@+id/spnJoinCom"
@@ -37,6 +41,7 @@
             android:id="@+id/edtPin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:ems="10"
             android:inputType="number"
             android:visibility="invisible" />
@@ -45,7 +50,12 @@
             android:id="@+id/btnJoinCom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Join" />
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btnhover"
+            android:fontFamily="@font/caviardreamsbold"
+            android:text="Join"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

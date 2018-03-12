@@ -1,24 +1,19 @@
-COMMUNIFY
-=================
+<img src="TITLE_BLACK.png">
+Es una App que resuelve las necesidades de una comunidad de vecinos que comparten servicios y que se conectan entre ellos y con otras comunidades.
+Donde tu puedes realizar favores o pedir si pueden hacerte un favor.
+Para poder pedir favores o realizar tienes que unirte a una comunidad, accediendo con la contraseña de la comunidad. Puedes unirte a varias comunidades y crear tus anunicios.
+Los anuncios se diferencia por la categoria cuando crear el anuncio.
 
-[![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
-[![API](https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=23)
+Es una App muy intuitiva y de uso fácil.
 
-Esta es una app para fomentar la buena convivencia entre vecinos utilizando una cadena de favores.
-
-FUNCIONALIDAD
+SPLASH APP & LAUNCHER
 -----
 
-Esta app te permitirá crear y unirte a comunidades.
-Podrás crear anuncios para ofrecer un favor o para buscarlo.
+<img src="LOGO_SPLASH.png" width=400 height=600>        <img src="LAUNCHER.PNG" width=400 height=400>
 
-PREREQUISITES
------
 
-Tener como mínimo una version sdk 23.
-Tener minimo 80 mg de memoria libre.
 
-INSTALLING
+DOWNLOAD APP 
 -----
 
 Ir a play store y buscar `COMMUNIFY` o `http:play_store...`.

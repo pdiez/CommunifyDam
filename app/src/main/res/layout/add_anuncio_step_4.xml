@@ -60,125 +60,75 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="50" />
+
         <RadioGroup
             android:id="@+id/rg_group_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|fill_horizontal"
             android:layout_marginTop="5dp"
-            android:layout_weight="1">
+            android:layout_weight="0"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+            <RadioButton
+                android:id="@+id/ib_a"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:button="@drawable/sel_paint" />
 
-                <RadioButton
-                    android:id="@+id/ib_a"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1" />
-
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingEnd="50dp"
-                    app:srcCompat="@drawable/ic_healthcare" />
-
-                <RadioButton
-                    android:id="@+id/ib_b"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                     />
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingEnd="50dp"
-                    app:srcCompat="@drawable/ic_paintbrush" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+            <RadioButton
+                android:id="@+id/ib_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">>
+                android:button="@drawable/sel_pets" />
 
-                <RadioButton
-                    android:id="@+id/ib_c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingEnd="50dp"
-                    app:srcCompat="@drawable/ic_garden" />
-
-                <RadioButton
-                    android:id="@+id/ib_d"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    />
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingEnd="50dp"
-                    app:srcCompat="@drawable/ic_shopping" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+            <RadioButton
+                android:id="@+id/ib_c"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:button="@drawable/sel_wifi" />
 
-                <RadioButton
-                    android:id="@+id/ib_e"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"/>
+            <RadioButton
+                android:id="@+id/ib_d"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:button="@drawable/sel_shopping" />
 
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingEnd="50dp"
-                    app:srcCompat="@drawable/ic_wifi" />
+            <RadioButton
+                android:id="@+id/ib_e"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:button="@drawable/sel_healthcare" />
 
-                <RadioButton
-                    android:id="@+id/ib_f"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingEnd="50dp"
-                    app:srcCompat="@drawable/ic_pets" />
-            </LinearLayout>
+            <RadioButton
+                android:id="@+id/ib_f"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:button="@drawable/sel_garden" />
 
         </RadioGroup>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/bt_crear_anuncio"

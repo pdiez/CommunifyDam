@@ -48,23 +48,5 @@ public class FragmentAddAnuncio_1 extends Fragment {
 
     }
 
-    public void onRadioButtonClicked(View v) {
-
-        int checked = group.getCheckedRadioButtonId();
-
-        switch (checked) {
-            case R.id.radioOfrecer:
-                if (ofrecer.isChecked())
-                    // Crea anuncio con OFRECER
-                    break;
-            case R.id.radioBuscar:
-                if (buscar.isChecked())
-                    // Crea anuncio con BUSCAR
-                    break;
-
-        }
-
-
-    }
 }
 

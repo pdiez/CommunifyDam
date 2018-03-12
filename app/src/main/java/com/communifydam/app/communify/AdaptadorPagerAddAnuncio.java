@@ -1,20 +1,13 @@
 package com.communifydam.app.communify;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentActivity;
-import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -22,7 +15,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -193,23 +185,6 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
         }
     }
 
-    public void onRadioButtonClicked(View f) {
-
-        int checked = group.getCheckedRadioButtonId();
-
-        switch (checked) {
-            case R.id.radioOfrecer:
-                if (ofrecer.isChecked())
-                    // Crea anuncio con OFRECER
-                    break;
-            case R.id.radioBuscar:
-                if (buscar.isChecked())
-                    // Crea anuncio con BUSCAR
-                    break;
-
-        }
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void grabar(String vp) {
@@ -221,6 +196,7 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
         } else {
             anuncio.setTipo(1);
         }
+
         anuncio.setTitulo(edit_titulo.getText().toString());
         anuncio.setDescripcion(edit_descripcion.getText().toString());
         anuncio.setCommunityId(keys_comunidades.get(spinner_com.getSelectedItemPosition()));
@@ -233,7 +209,23 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
         Date cal = Calendar.getInstance().getTime();
         anuncio.setExpira(df.format(cal));
-        anuncio.setImagen("@drawable/ic_home_black_24dp");
+
+        if (a.isChecked())  {
+            anuncio.setImagen("@drawable/ic_paintbrush");
+        } else if (b.isChecked()) {
+            anuncio.setImagen("@drawable/ic_pets");
+        } else if (c.isChecked()) {
+            anuncio.setImagen("@drawable/ic_wifi");
+        }  else if (d.isChecked()) {
+            anuncio.setImagen("@drawable/ic_shopping");
+        } else if (e.isChecked()) {
+            anuncio.setImagen("@drawable/ic_healthcare");
+        } else if (f.isChecked()) {
+            anuncio.setImagen("@drawable/ic_garden");
+        } else  {
+            anuncio.setImagen("@drawable/ic_people");
+        }
+
         anuncio.setUserId(mAuth.getCurrentUser().getUid());
 
         DatabaseReference dbanuncio = mData.child("anuncios");
