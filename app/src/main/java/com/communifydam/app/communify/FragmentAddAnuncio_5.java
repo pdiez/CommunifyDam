@@ -3,6 +3,7 @@ package com.communifydam.app.communify;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,8 @@ public class FragmentAddAnuncio_5 extends Fragment{
         mi_vp.setD(d);
         mi_vp.setE(e);
         mi_vp.setF(f);
+
+        Log.v("check_log","Ofrecer -> " + mi_vp.getOfrecer().isChecked());
 
         mi_vp.setBt_crearAnuncio(bt_crearAnuncio);
 

@@ -4,10 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -39,6 +41,8 @@ public class FragmentAddAnuncio_1 extends Fragment {
         mi_vp.setGroup(group);
         mi_vp.setBuscar(buscar);
         mi_vp.setOfrecer(ofrecer);
+
+
         return v;
     }
 

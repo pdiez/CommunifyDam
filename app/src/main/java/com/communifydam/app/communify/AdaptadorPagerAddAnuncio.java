@@ -66,6 +66,66 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
     private static int minute;
     private static int hour;
 
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
+    }
+
+    public EditText getEdit_titulo() {
+        return edit_titulo;
+    }
+
+    public EditText getEdit_descripcion() {
+        return edit_descripcion;
+    }
+
+    public RadioGroup getGroup() {
+        return group;
+    }
+
+    public RadioGroup getIconos() {
+        return iconos;
+    }
+
+    public RadioButton getOfrecer() {
+        return ofrecer;
+    }
+
+    public RadioButton getBuscar() {
+        return buscar;
+    }
+
+    public RadioButton getA() {
+        return a;
+    }
+
+    public RadioButton getB() {
+        return b;
+    }
+
+    public RadioButton getC() {
+        return c;
+    }
+
+    public RadioButton getD() {
+        return d;
+    }
+
+    public RadioButton getE() {
+        return e;
+    }
+
+    public RadioButton getF() {
+        return f;
+    }
+
+    public Button getBt_crearAnuncio() {
+        return bt_crearAnuncio;
+    }
+
+    public Spinner getSpinner_com() {
+        return spinner_com;
+    }
+
     public void setA(RadioButton a) {
         this.a = a;
     }
@@ -129,8 +189,8 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
 
     }
 
-    public void setOfrecer(RadioButton ofrecer) {
-        this.ofrecer = ofrecer;
+    public void setOfrecer(RadioButton of) {
+        this.ofrecer = of;
 
     }
 
@@ -152,7 +212,7 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
     @Override
     public int getCount() {
 
-        return 5;
+        return 4;
     }
 
     @Override
@@ -190,7 +250,6 @@ public class AdaptadorPagerAddAnuncio extends FragmentPagerAdapter implements Gr
     public void grabar(String vp) {
 
         Anuncio anuncio = new Anuncio();
-
         if(ofrecer.isChecked()) {
             anuncio.setTipo(0);
         } else {

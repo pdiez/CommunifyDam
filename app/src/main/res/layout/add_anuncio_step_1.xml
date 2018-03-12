@@ -13,8 +13,7 @@
         android:layout_height="75dp"
         android:layout_weight="1"
         android:background="@drawable/fondo_wizard_anuncio"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical" >
 
 
         <TextView

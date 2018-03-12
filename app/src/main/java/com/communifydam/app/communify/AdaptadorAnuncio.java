@@ -28,7 +28,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<MiniAnuncio>{
     public class ViewHolder{
         ImageView image, tipo;
 
-        TextView titulo, anunciante, descripcion, fecha;
+        TextView titulo, anunciante, descripcion, fecha, comunidad;
     }
 
 
@@ -46,6 +46,7 @@ public class AdaptadorAnuncio extends ArrayAdapter<MiniAnuncio>{
             holder.anunciante = (TextView)convertView.findViewById(R.id.txtAnunciante);
             holder.descripcion = (TextView)convertView.findViewById(R.id.txtDescripcion);
             holder.fecha = (TextView)convertView.findViewById(R.id.txtTiempo);
+            holder.comunidad = (TextView)convertView.findViewById(R.id.txtComunidad);
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();
@@ -58,11 +59,12 @@ public class AdaptadorAnuncio extends ArrayAdapter<MiniAnuncio>{
             holder.tipo.setBackground(context.getResources().getDrawable(R.color.colorAccent, null));
         }
 
-
+        holder.comunidad.setText(rowItem.getComunidad());
         holder.titulo.setText(rowItem.getTitulo());
         holder.descripcion.setText(rowItem.getDescripcion());
-        holder.anunciante.setText(rowItem.getAnunciante());
-        holder.fecha.setText(rowItem.getFecha());
+        holder.anunciante.setText(rowItem.getFecha());
+        //holder.fecha.setText(rowItem.getFecha());
+        holder.fecha.setText("");
 
         return convertView;
     }
