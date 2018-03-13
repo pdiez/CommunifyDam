@@ -28,7 +28,7 @@ Ir a play store y buscar `COMMUNIFY` o `http:play_store...`.
 -----
 Promo Video
 
-[![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://www.youtube.com/watch?v=eY5g8OuZBRE)
+[![Watch the video](http://img.youtube.com/vi/VIDEO-ID/0.jpg)](https://www.youtube.com/watch?v=eY5g8OuZBRE)
 
 
 Built With
