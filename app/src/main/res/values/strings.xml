@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Communify</string>
-    <string name="anonimo">Anonimo</string>
+    <string name="anonimo">Unknown</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="comunidades">Communities</string>
@@ -35,21 +35,21 @@
     <string name="login_EditTex_contraseña">Password</string>
     <string name="login_btn_entrar">Log In</string>
     <string name="login_btn_registrar">Sign Up</string>
-    <string name="ofreces_buscas">¿Ofreces o Necesitas?</string>
-    <string name="radiobutton_ofrecer">OFREZCO</string>
-    <string name="radiobutton_necesitar">NECESITO</string>
-    <string name="anuncio_titulo">Agrega un título a tu anuncio...</string>
+    <string name="ofreces_buscas">Offer or Need?</string>
+    <string name="radiobutton_ofrecer">I OFFER</string>
+    <string name="radiobutton_necesitar">I NEED</string>
+    <string name="anuncio_titulo">Set a title for your ad ...</string>
     <string name="description">Descripcion</string>
-    <string name="descrip">... y una breve descripción.</string>
-    <string name="textview_calendar">Selecciona una fecha...</string>
-    <string name="text_seleccion_hora">Selecciona un icono...</string>
-    <string name="text_view_elige_Com">Elige tu comunidad para este anuncio</string>
-    <string name="back_button">Atras</string>
-    <string name="next_button">Siguiente</string>
-    <string name="next_button2">Finalizar</string>
-    <string name="bt_crearAnuncio">CREAR ANUNCIO</string>
-    <string name="titulo_anuncio">Título</string>
-    <string name="text_descripcion">Descripción</string>
+    <string name="descrip">... and a short description.</string>
+    <string name="textview_calendar">Choose a date ...</string>
+    <string name="text_seleccion_hora">Choose an icon ...</string>
+    <string name="text_view_elige_Com">Choose the community for your ad</string>
+    <string name="back_button">Back</string>
+    <string name="next_button">Next</string>
+    <string name="next_button2">Finished</string>
+    <string name="bt_crearAnuncio">SET AD</string>
+    <string name="titulo_anuncio">Title</string>
+    <string name="text_descripcion">Description</string>
     <string name="AddComunidad_nombre_comunidad">Comunity Name</string>
     <string name="AddComunidad_tv_nombre">Which name do you want to set in your community?</string>
     <string name="AddComunidad_tv_descripcion">Do you want to set a short description about your community?</string>
@@ -71,4 +71,10 @@
     <string name="joined_community">Welcome to the community:</string>
     <string name="tv_pin">Please, enter a pin number for this Community</string>
     <string name="joinComunidad_tv_elige">Choose a community</string>
+    <string name="joinComunidad_btn_entar">Join</string>
+    <string name="sjhz_tv_tituloAnuncio">Ad´s title</string>
+    <string name="sjhz_et_tituloAnuncio">Title</string>
+    <string name="sjhz_tv_descripcionAnuncio">Ad´s description</string>
+    <string name="sjhz_et_descripcionAnuncio">Description</string>
+    <string name="sjhz_tv_eligeComunidad">Choose a community</string>
 </resources>
