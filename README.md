@@ -28,7 +28,7 @@ Ir a play store y buscar `COMMUNIFY` o `http:play_store...`.
 -----
 Promo Video
 
-[![Watch the video](http://img.youtube.com/vi/VIDEO-ID/0.jpg)](https://www.youtube.com/watch?v=eY5g8OuZBRE)
+[![Watch the video](https://img.youtube.com/vi/eY5g8OuZBRE/0.jpg)](https://www.youtube.com/watch?v=eY5g8OuZBRE)
 
 
 Built With
