@@ -269,13 +269,13 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 .withTranslucentStatusBar(true)
                 .withToolbar(myToolbar)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Crear Comunidad").withIcon(R.mipmap.com_add).withIdentifier(1),
-                        new PrimaryDrawerItem().withName("Unirse a comunidad").withIcon(R.mipmap.com_in).withIdentifier(2),
-                        new PrimaryDrawerItem().withName("Salir de una comunidad").withIcon(R.mipmap.com_out).withIdentifier(3),
-                        new PrimaryDrawerItem().withName("Cambiar foto de perfil").withIcon(R.drawable.ic_people).withIdentifier(4),
-                        new PrimaryDrawerItem().withName("Crear un anuncio").withIcon(R.drawable.ic_add).withIdentifier(5),
-                        new PrimaryDrawerItem().withName("Cerrar sesión").withIcon(R.drawable.ic_logout).withIdentifier(6),
-                        new PrimaryDrawerItem().withName("Salir").withIcon(R.drawable.ic_exit).withIdentifier(7)
+                        new PrimaryDrawerItem().withName(getString(R.string.create_community_op)).withIcon(R.mipmap.com_add).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(getString(R.string.join_community_op)).withIcon(R.mipmap.com_in).withIdentifier(2),
+                        new PrimaryDrawerItem().withName(getString(R.string.exit_community_op)).withIcon(R.mipmap.com_out).withIdentifier(3),
+                        new PrimaryDrawerItem().withName(getString(R.string.profile_pic_op)).withIcon(R.drawable.ic_people).withIdentifier(4),
+                        new PrimaryDrawerItem().withName(getString(R.string.create_add_op)).withIcon(R.drawable.ic_add).withIdentifier(5),
+                        new PrimaryDrawerItem().withName(getString(R.string.logout)).withIcon(R.drawable.ic_logout).withIdentifier(6),
+                        new PrimaryDrawerItem().withName(getString(R.string.exit)).withIcon(R.drawable.ic_exit).withIdentifier(7)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override

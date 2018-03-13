@@ -50,11 +50,11 @@ public class ComunidadDialog extends DialogFragment {
                                        public void onPageSelected(int pos) {
                                            paso = pos;
                                            if (paso==0) {
-                                               prev.setText("Cancelar");
-                                               prev.setEnabled(true);
+                                               prev.setEnabled(false);
                                                next.setEnabled(true);
+                                               next.setText(R.string.next_button);
                                            } else  {
-                                               next.setText("Finalizar");
+                                               next.setText(R.string.next_button2);
                                                prev.setEnabled(true);
                                                next.setEnabled(true);
                                            }

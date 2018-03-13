@@ -77,4 +77,12 @@
     <string name="sjhz_tv_descripcionAnuncio">Ad´s description</string>
     <string name="sjhz_et_descripcionAnuncio">Description</string>
     <string name="sjhz_tv_eligeComunidad">Choose a community</string>
+    <string name="select_expire_date">Select expire date</string>
+    <string name="create_community_op">Create new community</string>
+    <string name="join_community_op">Join existing community</string>
+    <string name="exit_community_op">Leave community</string>
+    <string name="profile_pic_op">Change profile picture</string>
+    <string name="create_add_op">Create new ad</string>
+    <string name="logout">Logout</string>
+    <string name="exit">Exit</string>
 </resources>
